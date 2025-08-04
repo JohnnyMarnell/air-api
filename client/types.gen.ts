@@ -101,7 +101,7 @@ export type GetAssetVersionResponse = {
     urls: AssetUrls;
 };
 
-export type GetV1AssetsData = {
+export type ListAssetsData = {
     body?: never;
     path?: never;
     query?: {
@@ -125,7 +125,7 @@ export type GetV1AssetsData = {
     url: '/v1/assets';
 };
 
-export type GetV1AssetsErrors = {
+export type ListAssetsErrors = {
     /**
      * Default
      */
@@ -172,9 +172,9 @@ export type GetV1AssetsErrors = {
     };
 };
 
-export type GetV1AssetsError = GetV1AssetsErrors[keyof GetV1AssetsErrors];
+export type ListAssetsError = ListAssetsErrors[keyof ListAssetsErrors];
 
-export type GetV1AssetsResponses = {
+export type ListAssetsResponses = {
     /**
      * Filter by tag
      */
@@ -221,9 +221,9 @@ export type GetV1AssetsResponses = {
     };
 };
 
-export type GetV1AssetsResponse = GetV1AssetsResponses[keyof GetV1AssetsResponses];
+export type ListAssetsResponse = ListAssetsResponses[keyof ListAssetsResponses];
 
-export type DeleteV1AssetsByAssetIdData = {
+export type DeleteAssetData = {
     body?: never;
     path: {
         assetId: string;
@@ -232,16 +232,16 @@ export type DeleteV1AssetsByAssetIdData = {
     url: '/v1/assets/{assetId}';
 };
 
-export type DeleteV1AssetsByAssetIdResponses = {
+export type DeleteAssetResponses = {
     /**
      * Default
      */
     204: void;
 };
 
-export type DeleteV1AssetsByAssetIdResponse = DeleteV1AssetsByAssetIdResponses[keyof DeleteV1AssetsByAssetIdResponses];
+export type DeleteAssetResponse = DeleteAssetResponses[keyof DeleteAssetResponses];
 
-export type GetV1AssetsByAssetIdData = {
+export type GetAssetData = {
     body?: never;
     path: {
         assetId: string;
@@ -250,7 +250,7 @@ export type GetV1AssetsByAssetIdData = {
     url: '/v1/assets/{assetId}';
 };
 
-export type GetV1AssetsByAssetIdResponses = {
+export type GetAssetResponses = {
     /**
      * Default
      */
@@ -290,9 +290,9 @@ export type GetV1AssetsByAssetIdResponses = {
     };
 };
 
-export type GetV1AssetsByAssetIdResponse = GetV1AssetsByAssetIdResponses[keyof GetV1AssetsByAssetIdResponses];
+export type GetAssetResponse = GetAssetResponses[keyof GetAssetResponses];
 
-export type PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdData = {
+export type SetAssetCustomFieldData = {
     body?: never;
     path: {
         /**
@@ -308,7 +308,7 @@ export type PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdData = {
     url: '/v1/assets/{assetId}/customfields/{customFieldId}';
 };
 
-export type PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdResponses = {
+export type SetAssetCustomFieldResponses = {
     /**
      * single-select
      */
@@ -317,9 +317,9 @@ export type PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdResponses = {
     };
 };
 
-export type PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdResponse = PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdResponses[keyof PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdResponses];
+export type SetAssetCustomFieldResponse = SetAssetCustomFieldResponses[keyof SetAssetCustomFieldResponses];
 
-export type GetV1AssetsByAssetIdVersionsData = {
+export type ListAssetVersionsData = {
     body?: never;
     path: {
         /**
@@ -331,7 +331,7 @@ export type GetV1AssetsByAssetIdVersionsData = {
     url: '/v1/assets/{assetId}/versions';
 };
 
-export type GetV1AssetsByAssetIdVersionsResponses = {
+export type ListAssetVersionsResponses = {
     /**
      * Default
      */
@@ -357,7 +357,7 @@ export type GetV1AssetsByAssetIdVersionsResponses = {
     };
 };
 
-export type GetV1AssetsByAssetIdVersionsResponse = GetV1AssetsByAssetIdVersionsResponses[keyof GetV1AssetsByAssetIdVersionsResponses];
+export type ListAssetVersionsResponse = ListAssetVersionsResponses[keyof ListAssetVersionsResponses];
 
 export type GetAssetVersionData = {
     body?: never;
@@ -384,7 +384,7 @@ export type GetAssetVersionResponses = {
 
 export type GetAssetVersionResponse2 = GetAssetVersionResponses[keyof GetAssetVersionResponses];
 
-export type PatchV1AssetsByAssetIdVersionsByVersionIdData = {
+export type UpdateAssetVersionData = {
     body?: {
         title?: string;
         description?: string;
@@ -403,7 +403,7 @@ export type PatchV1AssetsByAssetIdVersionsByVersionIdData = {
     url: '/v1/assets/{assetId}/versions/{versionId}';
 };
 
-export type PatchV1AssetsByAssetIdVersionsByVersionIdResponses = {
+export type UpdateAssetVersionResponses = {
     /**
      * Default
      */
@@ -412,9 +412,9 @@ export type PatchV1AssetsByAssetIdVersionsByVersionIdResponses = {
     };
 };
 
-export type PatchV1AssetsByAssetIdVersionsByVersionIdResponse = PatchV1AssetsByAssetIdVersionsByVersionIdResponses[keyof PatchV1AssetsByAssetIdVersionsByVersionIdResponses];
+export type UpdateAssetVersionResponse = UpdateAssetVersionResponses[keyof UpdateAssetVersionResponses];
 
-export type GetV1AssetsByAssetIdVersionsByVersionIdDownloadData = {
+export type GetAssetVersionDownloadUrlData = {
     body?: never;
     path: {
         /**
@@ -430,7 +430,7 @@ export type GetV1AssetsByAssetIdVersionsByVersionIdDownloadData = {
     url: '/v1/assets/{assetId}/versions/{versionId}/download';
 };
 
-export type GetV1AssetsByAssetIdVersionsByVersionIdDownloadResponses = {
+export type GetAssetVersionDownloadUrlResponses = {
     /**
      * Default
      */
@@ -440,9 +440,9 @@ export type GetV1AssetsByAssetIdVersionsByVersionIdDownloadResponses = {
     };
 };
 
-export type GetV1AssetsByAssetIdVersionsByVersionIdDownloadResponse = GetV1AssetsByAssetIdVersionsByVersionIdDownloadResponses[keyof GetV1AssetsByAssetIdVersionsByVersionIdDownloadResponses];
+export type GetAssetVersionDownloadUrlResponse = GetAssetVersionDownloadUrlResponses[keyof GetAssetVersionDownloadUrlResponses];
 
-export type PostV1AssetsByAssetIdVersionsByVersionIdTagsData = {
+export type AddAssetVersionTagData = {
     body?: never;
     path: {
         /**
@@ -458,16 +458,16 @@ export type PostV1AssetsByAssetIdVersionsByVersionIdTagsData = {
     url: '/v1/assets/{assetId}/versions/{versionId}/tags';
 };
 
-export type PostV1AssetsByAssetIdVersionsByVersionIdTagsResponses = {
+export type AddAssetVersionTagResponses = {
     /**
      * Default
      */
     204: void;
 };
 
-export type PostV1AssetsByAssetIdVersionsByVersionIdTagsResponse = PostV1AssetsByAssetIdVersionsByVersionIdTagsResponses[keyof PostV1AssetsByAssetIdVersionsByVersionIdTagsResponses];
+export type AddAssetVersionTagResponse = AddAssetVersionTagResponses[keyof AddAssetVersionTagResponses];
 
-export type DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdData = {
+export type DeleteAssetVersionTagData = {
     body?: never;
     path: {
         /**
@@ -487,16 +487,16 @@ export type DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdData = {
     url: '/v1/assets/{assetId}/versions/{versionId}/tags/{tagId}';
 };
 
-export type DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdResponses = {
+export type DeleteAssetVersionTagResponses = {
     /**
      * Default
      */
     204: void;
 };
 
-export type DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdResponse = DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdResponses[keyof DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdResponses];
+export type DeleteAssetVersionTagResponse = DeleteAssetVersionTagResponses[keyof DeleteAssetVersionTagResponses];
 
-export type GetV1AssetsByAssetIdBoardsData = {
+export type ListAssetBoardsData = {
     body?: never;
     path: {
         /**
@@ -521,7 +521,7 @@ export type GetV1AssetsByAssetIdBoardsData = {
     url: '/v1/assets/{assetId}/boards';
 };
 
-export type GetV1AssetsByAssetIdBoardsResponses = {
+export type ListAssetBoardsResponses = {
     /**
      * Default
      */
@@ -542,9 +542,9 @@ export type GetV1AssetsByAssetIdBoardsResponses = {
     };
 };
 
-export type GetV1AssetsByAssetIdBoardsResponse = GetV1AssetsByAssetIdBoardsResponses[keyof GetV1AssetsByAssetIdBoardsResponses];
+export type ListAssetBoardsResponse = ListAssetBoardsResponses[keyof ListAssetBoardsResponses];
 
-export type GetV1BoardsData = {
+export type ListBoardsData = {
     body?: never;
     path?: never;
     query?: {
@@ -568,7 +568,7 @@ export type GetV1BoardsData = {
     url: '/v1/boards';
 };
 
-export type GetV1BoardsResponses = {
+export type ListBoardsResponses = {
     /**
      * Default
      */
@@ -598,16 +598,16 @@ export type GetV1BoardsResponses = {
     };
 };
 
-export type GetV1BoardsResponse = GetV1BoardsResponses[keyof GetV1BoardsResponses];
+export type ListBoardsResponse = ListBoardsResponses[keyof ListBoardsResponses];
 
-export type PostV1BoardsData = {
+export type CreateBoardData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/boards';
 };
 
-export type PostV1BoardsResponses = {
+export type CreateBoardResponses = {
     /**
      * Default
      */
@@ -619,9 +619,9 @@ export type PostV1BoardsResponses = {
     };
 };
 
-export type PostV1BoardsResponse = PostV1BoardsResponses[keyof PostV1BoardsResponses];
+export type CreateBoardResponse = CreateBoardResponses[keyof CreateBoardResponses];
 
-export type DeleteV1BoardsByBoardIdData = {
+export type DeleteBoardData = {
     body?: never;
     path: {
         /**
@@ -633,16 +633,16 @@ export type DeleteV1BoardsByBoardIdData = {
     url: '/v1/boards/{boardId}';
 };
 
-export type DeleteV1BoardsByBoardIdResponses = {
+export type DeleteBoardResponses = {
     /**
      * Default
      */
     204: void;
 };
 
-export type DeleteV1BoardsByBoardIdResponse = DeleteV1BoardsByBoardIdResponses[keyof DeleteV1BoardsByBoardIdResponses];
+export type DeleteBoardResponse = DeleteBoardResponses[keyof DeleteBoardResponses];
 
-export type GetV1BoardsByBoardIdData = {
+export type GetBoardData = {
     body?: never;
     path: {
         /**
@@ -654,7 +654,7 @@ export type GetV1BoardsByBoardIdData = {
     url: '/v1/boards/{boardId}';
 };
 
-export type GetV1BoardsByBoardIdResponses = {
+export type GetBoardResponses = {
     /**
      * Default
      */
@@ -677,9 +677,9 @@ export type GetV1BoardsByBoardIdResponses = {
     };
 };
 
-export type GetV1BoardsByBoardIdResponse = GetV1BoardsByBoardIdResponses[keyof GetV1BoardsByBoardIdResponses];
+export type GetBoardResponse = GetBoardResponses[keyof GetBoardResponses];
 
-export type PatchV1BoardsByBoardIdData = {
+export type UpdateBoardData = {
     body?: never;
     path: {
         /**
@@ -691,16 +691,16 @@ export type PatchV1BoardsByBoardIdData = {
     url: '/v1/boards/{boardId}';
 };
 
-export type PatchV1BoardsByBoardIdResponses = {
+export type UpdateBoardResponses = {
     /**
      * Default
      */
     204: void;
 };
 
-export type PatchV1BoardsByBoardIdResponse = PatchV1BoardsByBoardIdResponses[keyof PatchV1BoardsByBoardIdResponses];
+export type UpdateBoardResponse = UpdateBoardResponses[keyof UpdateBoardResponses];
 
-export type PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdData = {
+export type SetBoardCustomFieldData = {
     body?: never;
     path: {
         /**
@@ -716,7 +716,7 @@ export type PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdData = {
     url: '/v1/boards/{boardId}/customfields/{customFieldId}';
 };
 
-export type PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdResponses = {
+export type SetBoardCustomFieldResponses = {
     /**
      * single-select
      */
@@ -725,9 +725,9 @@ export type PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdResponses = {
     };
 };
 
-export type PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdResponse = PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdResponses[keyof PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdResponses];
+export type SetBoardCustomFieldResponse = SetBoardCustomFieldResponses[keyof SetBoardCustomFieldResponses];
 
-export type PostV1BoardsByBoardIdAssetsData = {
+export type AddAssetsToBoardData = {
     body?: never;
     path: {
         boardId: string;
@@ -736,7 +736,7 @@ export type PostV1BoardsByBoardIdAssetsData = {
     url: '/v1/boards/{boardId}/assets';
 };
 
-export type PostV1BoardsByBoardIdAssetsResponses = {
+export type AddAssetsToBoardResponses = {
     /**
      * Default
      */
@@ -745,9 +745,9 @@ export type PostV1BoardsByBoardIdAssetsResponses = {
     };
 };
 
-export type PostV1BoardsByBoardIdAssetsResponse = PostV1BoardsByBoardIdAssetsResponses[keyof PostV1BoardsByBoardIdAssetsResponses];
+export type AddAssetsToBoardResponse = AddAssetsToBoardResponses[keyof AddAssetsToBoardResponses];
 
-export type DeleteV1BoardsByBoardIdAssetsByAssetIdData = {
+export type RemoveAssetFromBoardData = {
     body?: unknown;
     path: {
         /**
@@ -763,14 +763,14 @@ export type DeleteV1BoardsByBoardIdAssetsByAssetIdData = {
     url: '/v1/boards/{boardId}/assets/{assetId}';
 };
 
-export type DeleteV1BoardsByBoardIdAssetsByAssetIdResponses = {
+export type RemoveAssetFromBoardResponses = {
     /**
      * Default
      */
     204: unknown;
 };
 
-export type GetV1BoardsByBoardIdGuestsData = {
+export type ListBoardGuestsData = {
     body?: never;
     path: {
         /**
@@ -787,7 +787,7 @@ export type GetV1BoardsByBoardIdGuestsData = {
     url: '/v1/boards/{boardId}/guests';
 };
 
-export type GetV1BoardsByBoardIdGuestsResponses = {
+export type ListBoardGuestsResponses = {
     /**
      * Default
      */
@@ -801,9 +801,9 @@ export type GetV1BoardsByBoardIdGuestsResponses = {
     };
 };
 
-export type GetV1BoardsByBoardIdGuestsResponse = GetV1BoardsByBoardIdGuestsResponses[keyof GetV1BoardsByBoardIdGuestsResponses];
+export type ListBoardGuestsResponse = ListBoardGuestsResponses[keyof ListBoardGuestsResponses];
 
-export type PostV1BoardsByBoardIdGuestsData = {
+export type AddBoardGuestData = {
     body?: never;
     path: {
         /**
@@ -815,7 +815,7 @@ export type PostV1BoardsByBoardIdGuestsData = {
     url: '/v1/boards/{boardId}/guests';
 };
 
-export type PostV1BoardsByBoardIdGuestsResponses = {
+export type AddBoardGuestResponses = {
     /**
      * Default
      */
@@ -827,9 +827,9 @@ export type PostV1BoardsByBoardIdGuestsResponses = {
     };
 };
 
-export type PostV1BoardsByBoardIdGuestsResponse = PostV1BoardsByBoardIdGuestsResponses[keyof PostV1BoardsByBoardIdGuestsResponses];
+export type AddBoardGuestResponse = AddBoardGuestResponses[keyof AddBoardGuestResponses];
 
-export type DeleteV1BoardsByBoardIdGuestsByGuestIdData = {
+export type RemoveBoardGuestData = {
     body?: never;
     path: {
         /**
@@ -845,7 +845,7 @@ export type DeleteV1BoardsByBoardIdGuestsByGuestIdData = {
     url: '/v1/boards/{boardId}/guests/{guestId}';
 };
 
-export type DeleteV1BoardsByBoardIdGuestsByGuestIdResponses = {
+export type RemoveBoardGuestResponses = {
     /**
      * Default
      */
@@ -854,9 +854,9 @@ export type DeleteV1BoardsByBoardIdGuestsByGuestIdResponses = {
     };
 };
 
-export type DeleteV1BoardsByBoardIdGuestsByGuestIdResponse = DeleteV1BoardsByBoardIdGuestsByGuestIdResponses[keyof DeleteV1BoardsByBoardIdGuestsByGuestIdResponses];
+export type RemoveBoardGuestResponse = RemoveBoardGuestResponses[keyof RemoveBoardGuestResponses];
 
-export type PatchV1BoardsByBoardIdGuestsByGuestIdData = {
+export type UpdateBoardGuestData = {
     body?: {
         [key: string]: unknown;
     };
@@ -874,7 +874,7 @@ export type PatchV1BoardsByBoardIdGuestsByGuestIdData = {
     url: '/v1/boards/{boardId}/guests/{guestId}';
 };
 
-export type PatchV1BoardsByBoardIdGuestsByGuestIdResponses = {
+export type UpdateBoardGuestResponses = {
     /**
      * Default
      */
@@ -883,9 +883,9 @@ export type PatchV1BoardsByBoardIdGuestsByGuestIdResponses = {
     };
 };
 
-export type PatchV1BoardsByBoardIdGuestsByGuestIdResponse = PatchV1BoardsByBoardIdGuestsByGuestIdResponses[keyof PatchV1BoardsByBoardIdGuestsByGuestIdResponses];
+export type UpdateBoardGuestResponse = UpdateBoardGuestResponses[keyof UpdateBoardGuestResponses];
 
-export type GetV1CustomfieldsData = {
+export type ListCustomFieldsData = {
     body?: never;
     path?: never;
     query?: {
@@ -905,7 +905,7 @@ export type GetV1CustomfieldsData = {
     url: '/v1/customfields';
 };
 
-export type GetV1CustomfieldsResponses = {
+export type ListCustomFieldsResponses = {
     /**
      * Default
      */
@@ -926,16 +926,16 @@ export type GetV1CustomfieldsResponses = {
     };
 };
 
-export type GetV1CustomfieldsResponse = GetV1CustomfieldsResponses[keyof GetV1CustomfieldsResponses];
+export type ListCustomFieldsResponse = ListCustomFieldsResponses[keyof ListCustomFieldsResponses];
 
-export type PostV1CustomfieldsData = {
+export type CreateCustomFieldData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/customfields';
 };
 
-export type PostV1CustomfieldsErrors = {
+export type CreateCustomFieldErrors = {
     /**
      * single-select
      */
@@ -951,9 +951,9 @@ export type PostV1CustomfieldsErrors = {
     };
 };
 
-export type PostV1CustomfieldsError = PostV1CustomfieldsErrors[keyof PostV1CustomfieldsErrors];
+export type CreateCustomFieldError = CreateCustomFieldErrors[keyof CreateCustomFieldErrors];
 
-export type PostV1CustomfieldsResponses = {
+export type CreateCustomFieldResponses = {
     /**
      * multi-select
      */
@@ -969,9 +969,9 @@ export type PostV1CustomfieldsResponses = {
     };
 };
 
-export type PostV1CustomfieldsResponse = PostV1CustomfieldsResponses[keyof PostV1CustomfieldsResponses];
+export type CreateCustomFieldResponse = CreateCustomFieldResponses[keyof CreateCustomFieldResponses];
 
-export type DeleteV1CustomfieldsByCustomFieldIdData = {
+export type DeleteCustomFieldData = {
     body?: never;
     path: {
         /**
@@ -983,16 +983,16 @@ export type DeleteV1CustomfieldsByCustomFieldIdData = {
     url: '/v1/customfields/{customFieldId}';
 };
 
-export type DeleteV1CustomfieldsByCustomFieldIdResponses = {
+export type DeleteCustomFieldResponses = {
     /**
      * Default
      */
     204: void;
 };
 
-export type DeleteV1CustomfieldsByCustomFieldIdResponse = DeleteV1CustomfieldsByCustomFieldIdResponses[keyof DeleteV1CustomfieldsByCustomFieldIdResponses];
+export type DeleteCustomFieldResponse = DeleteCustomFieldResponses[keyof DeleteCustomFieldResponses];
 
-export type GetV1CustomfieldsByCustomFieldIdData = {
+export type GetCustomFieldData = {
     body?: never;
     path: {
         /**
@@ -1004,7 +1004,7 @@ export type GetV1CustomfieldsByCustomFieldIdData = {
     url: '/v1/customfields/{customFieldId}';
 };
 
-export type GetV1CustomfieldsByCustomFieldIdResponses = {
+export type GetCustomFieldResponses = {
     /**
      * Default
      */
@@ -1022,9 +1022,9 @@ export type GetV1CustomfieldsByCustomFieldIdResponses = {
     };
 };
 
-export type GetV1CustomfieldsByCustomFieldIdResponse = GetV1CustomfieldsByCustomFieldIdResponses[keyof GetV1CustomfieldsByCustomFieldIdResponses];
+export type GetCustomFieldResponse = GetCustomFieldResponses[keyof GetCustomFieldResponses];
 
-export type PatchV1CustomfieldsByCustomFieldIdData = {
+export type UpdateCustomFieldData = {
     body?: never;
     path: {
         /**
@@ -1036,14 +1036,14 @@ export type PatchV1CustomfieldsByCustomFieldIdData = {
     url: '/v1/customfields/{customFieldId}';
 };
 
-export type PatchV1CustomfieldsByCustomFieldIdResponses = {
+export type UpdateCustomFieldResponses = {
     /**
      * Default
      */
     200: unknown;
 };
 
-export type PostV1CustomfieldsByCustomFieldIdValuesData = {
+export type AddCustomFieldValueData = {
     body?: never;
     path: {
         /**
@@ -1055,7 +1055,7 @@ export type PostV1CustomfieldsByCustomFieldIdValuesData = {
     url: '/v1/customfields/{customFieldId}/values';
 };
 
-export type PostV1CustomfieldsByCustomFieldIdValuesResponses = {
+export type AddCustomFieldValueResponses = {
     /**
      * Default
      */
@@ -1065,9 +1065,9 @@ export type PostV1CustomfieldsByCustomFieldIdValuesResponses = {
     };
 };
 
-export type PostV1CustomfieldsByCustomFieldIdValuesResponse = PostV1CustomfieldsByCustomFieldIdValuesResponses[keyof PostV1CustomfieldsByCustomFieldIdValuesResponses];
+export type AddCustomFieldValueResponse = AddCustomFieldValueResponses[keyof AddCustomFieldValueResponses];
 
-export type DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdData = {
+export type DeleteCustomFieldValueData = {
     body?: never;
     path: {
         /**
@@ -1083,7 +1083,7 @@ export type DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdData = {
     url: '/v1/customfields/{customFieldId}/values/{valueId}';
 };
 
-export type DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdResponses = {
+export type DeleteCustomFieldValueResponses = {
     /**
      * Default
      */
@@ -1092,9 +1092,9 @@ export type DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdResponses = {
     };
 };
 
-export type DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdResponse = DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdResponses[keyof DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdResponses];
+export type DeleteCustomFieldValueResponse = DeleteCustomFieldValueResponses[keyof DeleteCustomFieldValueResponses];
 
-export type PatchV1CustomfieldsByCustomFieldIdValuesByValueIdData = {
+export type UpdateCustomFieldValueData = {
     body?: never;
     path: {
         /**
@@ -1110,7 +1110,7 @@ export type PatchV1CustomfieldsByCustomFieldIdValuesByValueIdData = {
     url: '/v1/customfields/{customFieldId}/values/{valueId}';
 };
 
-export type PatchV1CustomfieldsByCustomFieldIdValuesByValueIdResponses = {
+export type UpdateCustomFieldValueResponses = {
     /**
      * Default
      */
@@ -1120,9 +1120,9 @@ export type PatchV1CustomfieldsByCustomFieldIdValuesByValueIdResponses = {
     };
 };
 
-export type PatchV1CustomfieldsByCustomFieldIdValuesByValueIdResponse = PatchV1CustomfieldsByCustomFieldIdValuesByValueIdResponses[keyof PatchV1CustomfieldsByCustomFieldIdValuesByValueIdResponses];
+export type UpdateCustomFieldValueResponse = UpdateCustomFieldValueResponses[keyof UpdateCustomFieldValueResponses];
 
-export type GetV1TagsData = {
+export type ListTagsData = {
     body?: never;
     path?: never;
     query?: {
@@ -1142,7 +1142,7 @@ export type GetV1TagsData = {
     url: '/v1/tags';
 };
 
-export type GetV1TagsResponses = {
+export type ListTagsResponses = {
     /**
      * Default
      */
@@ -1159,16 +1159,16 @@ export type GetV1TagsResponses = {
     };
 };
 
-export type GetV1TagsResponse = GetV1TagsResponses[keyof GetV1TagsResponses];
+export type ListTagsResponse = ListTagsResponses[keyof ListTagsResponses];
 
-export type PostV1TagsData = {
+export type CreateTagData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/tags';
 };
 
-export type PostV1TagsResponses = {
+export type CreateTagResponses = {
     /**
      * Default
      */
@@ -1178,9 +1178,9 @@ export type PostV1TagsResponses = {
     };
 };
 
-export type PostV1TagsResponse = PostV1TagsResponses[keyof PostV1TagsResponses];
+export type CreateTagResponse = CreateTagResponses[keyof CreateTagResponses];
 
-export type DeleteV1TagsByTagIdData = {
+export type DeleteTagData = {
     body?: never;
     path: {
         /**
@@ -1192,7 +1192,7 @@ export type DeleteV1TagsByTagIdData = {
     url: '/v1/tags/{tagId}';
 };
 
-export type DeleteV1TagsByTagIdResponses = {
+export type DeleteTagResponses = {
     /**
      * Default
      */
@@ -1201,9 +1201,9 @@ export type DeleteV1TagsByTagIdResponses = {
     };
 };
 
-export type DeleteV1TagsByTagIdResponse = DeleteV1TagsByTagIdResponses[keyof DeleteV1TagsByTagIdResponses];
+export type DeleteTagResponse = DeleteTagResponses[keyof DeleteTagResponses];
 
-export type PatchV1TagsByTagIdData = {
+export type UpdateTagData = {
     body?: never;
     path: {
         /**
@@ -1215,7 +1215,7 @@ export type PatchV1TagsByTagIdData = {
     url: '/v1/tags/{tagId}';
 };
 
-export type PatchV1TagsByTagIdResponses = {
+export type UpdateTagResponses = {
     /**
      * Default
      */
@@ -1225,16 +1225,16 @@ export type PatchV1TagsByTagIdResponses = {
     };
 };
 
-export type PatchV1TagsByTagIdResponse = PatchV1TagsByTagIdResponses[keyof PatchV1TagsByTagIdResponses];
+export type UpdateTagResponse = UpdateTagResponses[keyof UpdateTagResponses];
 
-export type PostV1UploadsData = {
+export type CreateUploadData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/uploads';
 };
 
-export type PostV1UploadsResponses = {
+export type CreateUploadResponses = {
     /**
      * Small File (<5G)
      */
@@ -1245,16 +1245,16 @@ export type PostV1UploadsResponses = {
     };
 };
 
-export type PostV1UploadsResponse = PostV1UploadsResponses[keyof PostV1UploadsResponses];
+export type CreateUploadResponse = CreateUploadResponses[keyof CreateUploadResponses];
 
-export type PostV1UploadsUploadPartData = {
+export type CreateUploadPartData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/uploads/uploadPart';
 };
 
-export type PostV1UploadsUploadPartResponses = {
+export type CreateUploadPartResponses = {
     /**
      * Default
      */
@@ -1263,16 +1263,16 @@ export type PostV1UploadsUploadPartResponses = {
     };
 };
 
-export type PostV1UploadsUploadPartResponse = PostV1UploadsUploadPartResponses[keyof PostV1UploadsUploadPartResponses];
+export type CreateUploadPartResponse = CreateUploadPartResponses[keyof CreateUploadPartResponses];
 
-export type PostV1CompleteMultipartData = {
+export type CompleteMultipartUploadData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/completeMultipart';
 };
 
-export type PostV1CompleteMultipartResponses = {
+export type CompleteMultipartUploadResponses = {
     /**
      * Default
      */
@@ -1281,9 +1281,9 @@ export type PostV1CompleteMultipartResponses = {
     };
 };
 
-export type PostV1CompleteMultipartResponse = PostV1CompleteMultipartResponses[keyof PostV1CompleteMultipartResponses];
+export type CompleteMultipartUploadResponse = CompleteMultipartUploadResponses[keyof CompleteMultipartUploadResponses];
 
-export type PostV1ImportsData = {
+export type CreateImportData = {
     body?: {
         [key: string]: unknown;
     };
@@ -1295,7 +1295,7 @@ export type PostV1ImportsData = {
     url: '/v1/imports';
 };
 
-export type PostV1ImportsResponses = {
+export type CreateImportResponses = {
     /**
      * Without metadata
      */
@@ -1306,9 +1306,9 @@ export type PostV1ImportsResponses = {
     };
 };
 
-export type PostV1ImportsResponse = PostV1ImportsResponses[keyof PostV1ImportsResponses];
+export type CreateImportResponse = CreateImportResponses[keyof CreateImportResponses];
 
-export type GetV1ImportsByImportIdStatusData = {
+export type GetImportStatusData = {
     body?: never;
     headers?: {
         'x-air-workspace-id'?: string;
@@ -1320,7 +1320,7 @@ export type GetV1ImportsByImportIdStatusData = {
     url: '/v1/imports/{importId}/status';
 };
 
-export type GetV1ImportsByImportIdStatusResponses = {
+export type GetImportStatusResponses = {
     /**
      * succeeded
      */
@@ -1329,9 +1329,9 @@ export type GetV1ImportsByImportIdStatusResponses = {
     };
 };
 
-export type GetV1ImportsByImportIdStatusResponse = GetV1ImportsByImportIdStatusResponses[keyof GetV1ImportsByImportIdStatusResponses];
+export type GetImportStatusResponse = GetImportStatusResponses[keyof GetImportStatusResponses];
 
-export type GetV1RolesData = {
+export type ListRolesData = {
     body?: never;
     path?: never;
     query?: {
@@ -1343,7 +1343,7 @@ export type GetV1RolesData = {
     url: '/v1/roles';
 };
 
-export type GetV1RolesResponses = {
+export type ListRolesResponses = {
     /**
      * Default
      */
@@ -1358,7 +1358,7 @@ export type GetV1RolesResponses = {
     };
 };
 
-export type GetV1RolesResponse = GetV1RolesResponses[keyof GetV1RolesResponses];
+export type ListRolesResponse = ListRolesResponses[keyof ListRolesResponses];
 
 export type ClientOptions = {
     baseURL: `${string}://api.air.inc` | (string & {});

@@ -1,5 +1,5 @@
 import type { Options as ClientOptions, TDataShape, Client } from './client';
-import type { GetV1AssetsData, GetV1AssetsResponses, GetV1AssetsErrors, DeleteV1AssetsByAssetIdData, DeleteV1AssetsByAssetIdResponses, GetV1AssetsByAssetIdData, GetV1AssetsByAssetIdResponses, PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdData, PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdResponses, GetV1AssetsByAssetIdVersionsData, GetV1AssetsByAssetIdVersionsResponses, GetAssetVersionData, GetAssetVersionResponses, PatchV1AssetsByAssetIdVersionsByVersionIdData, PatchV1AssetsByAssetIdVersionsByVersionIdResponses, GetV1AssetsByAssetIdVersionsByVersionIdDownloadData, GetV1AssetsByAssetIdVersionsByVersionIdDownloadResponses, PostV1AssetsByAssetIdVersionsByVersionIdTagsData, PostV1AssetsByAssetIdVersionsByVersionIdTagsResponses, DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdData, DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdResponses, GetV1AssetsByAssetIdBoardsData, GetV1AssetsByAssetIdBoardsResponses, GetV1BoardsData, GetV1BoardsResponses, PostV1BoardsData, PostV1BoardsResponses, DeleteV1BoardsByBoardIdData, DeleteV1BoardsByBoardIdResponses, GetV1BoardsByBoardIdData, GetV1BoardsByBoardIdResponses, PatchV1BoardsByBoardIdData, PatchV1BoardsByBoardIdResponses, PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdData, PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdResponses, PostV1BoardsByBoardIdAssetsData, PostV1BoardsByBoardIdAssetsResponses, DeleteV1BoardsByBoardIdAssetsByAssetIdData, DeleteV1BoardsByBoardIdAssetsByAssetIdResponses, GetV1BoardsByBoardIdGuestsData, GetV1BoardsByBoardIdGuestsResponses, PostV1BoardsByBoardIdGuestsData, PostV1BoardsByBoardIdGuestsResponses, DeleteV1BoardsByBoardIdGuestsByGuestIdData, DeleteV1BoardsByBoardIdGuestsByGuestIdResponses, PatchV1BoardsByBoardIdGuestsByGuestIdData, PatchV1BoardsByBoardIdGuestsByGuestIdResponses, GetV1CustomfieldsData, GetV1CustomfieldsResponses, PostV1CustomfieldsData, PostV1CustomfieldsResponses, PostV1CustomfieldsErrors, DeleteV1CustomfieldsByCustomFieldIdData, DeleteV1CustomfieldsByCustomFieldIdResponses, GetV1CustomfieldsByCustomFieldIdData, GetV1CustomfieldsByCustomFieldIdResponses, PatchV1CustomfieldsByCustomFieldIdData, PatchV1CustomfieldsByCustomFieldIdResponses, PostV1CustomfieldsByCustomFieldIdValuesData, PostV1CustomfieldsByCustomFieldIdValuesResponses, DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdData, DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdResponses, PatchV1CustomfieldsByCustomFieldIdValuesByValueIdData, PatchV1CustomfieldsByCustomFieldIdValuesByValueIdResponses, GetV1TagsData, GetV1TagsResponses, PostV1TagsData, PostV1TagsResponses, DeleteV1TagsByTagIdData, DeleteV1TagsByTagIdResponses, PatchV1TagsByTagIdData, PatchV1TagsByTagIdResponses, PostV1UploadsData, PostV1UploadsResponses, PostV1UploadsUploadPartData, PostV1UploadsUploadPartResponses, PostV1CompleteMultipartData, PostV1CompleteMultipartResponses, PostV1ImportsData, PostV1ImportsResponses, GetV1ImportsByImportIdStatusData, GetV1ImportsByImportIdStatusResponses, GetV1RolesData, GetV1RolesResponses } from './types.gen';
+import type { ListAssetsData, ListAssetsResponses, ListAssetsErrors, DeleteAssetData, DeleteAssetResponses, GetAssetData, GetAssetResponses, SetAssetCustomFieldData, SetAssetCustomFieldResponses, ListAssetVersionsData, ListAssetVersionsResponses, GetAssetVersionData, GetAssetVersionResponses, UpdateAssetVersionData, UpdateAssetVersionResponses, GetAssetVersionDownloadUrlData, GetAssetVersionDownloadUrlResponses, AddAssetVersionTagData, AddAssetVersionTagResponses, DeleteAssetVersionTagData, DeleteAssetVersionTagResponses, ListAssetBoardsData, ListAssetBoardsResponses, ListBoardsData, ListBoardsResponses, CreateBoardData, CreateBoardResponses, DeleteBoardData, DeleteBoardResponses, GetBoardData, GetBoardResponses, UpdateBoardData, UpdateBoardResponses, SetBoardCustomFieldData, SetBoardCustomFieldResponses, AddAssetsToBoardData, AddAssetsToBoardResponses, RemoveAssetFromBoardData, RemoveAssetFromBoardResponses, ListBoardGuestsData, ListBoardGuestsResponses, AddBoardGuestData, AddBoardGuestResponses, RemoveBoardGuestData, RemoveBoardGuestResponses, UpdateBoardGuestData, UpdateBoardGuestResponses, ListCustomFieldsData, ListCustomFieldsResponses, CreateCustomFieldData, CreateCustomFieldResponses, CreateCustomFieldErrors, DeleteCustomFieldData, DeleteCustomFieldResponses, GetCustomFieldData, GetCustomFieldResponses, UpdateCustomFieldData, UpdateCustomFieldResponses, AddCustomFieldValueData, AddCustomFieldValueResponses, DeleteCustomFieldValueData, DeleteCustomFieldValueResponses, UpdateCustomFieldValueData, UpdateCustomFieldValueResponses, ListTagsData, ListTagsResponses, CreateTagData, CreateTagResponses, DeleteTagData, DeleteTagResponses, UpdateTagData, UpdateTagResponses, CreateUploadData, CreateUploadResponses, CreateUploadPartData, CreateUploadPartResponses, CompleteMultipartUploadData, CompleteMultipartUploadResponses, CreateImportData, CreateImportResponses, GetImportStatusData, GetImportStatusResponses, ListRolesData, ListRolesResponses } from './types.gen';
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = ClientOptions<TData, ThrowOnError> & {
     /**
      * You can provide a client instance returned by `createClient()` instead of
@@ -14,163 +14,285 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: Record<string, unknown>;
 };
 /**
- * /assets
+ * Get a list of assets.
  */
-export declare const getV1Assets: <ThrowOnError extends boolean = false>(options?: Options<GetV1AssetsData, ThrowOnError>) => import("./client").RequestResult<GetV1AssetsResponses, GetV1AssetsErrors, ThrowOnError>;
+export declare const listAssets: <ThrowOnError extends boolean = false>(options?: Options<ListAssetsData, ThrowOnError>) => import("./client").RequestResult<ListAssetsResponses, ListAssetsErrors, ThrowOnError>;
 /**
- * /assets/:assetId
+ * Delete an asset
  */
-export declare const deleteV1AssetsByAssetId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1AssetsByAssetIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1AssetsByAssetIdResponses, unknown, ThrowOnError>;
+export declare const deleteAsset: <ThrowOnError extends boolean = false>(options: Options<DeleteAssetData, ThrowOnError>) => import("./client").RequestResult<DeleteAssetResponses, unknown, ThrowOnError>;
 /**
- * /assets/:assetId
+ * Get an asset
  */
-export declare const getV1AssetsByAssetId: <ThrowOnError extends boolean = false>(options: Options<GetV1AssetsByAssetIdData, ThrowOnError>) => import("./client").RequestResult<GetV1AssetsByAssetIdResponses, unknown, ThrowOnError>;
+export declare const getAsset: <ThrowOnError extends boolean = false>(options: Options<GetAssetData, ThrowOnError>) => import("./client").RequestResult<GetAssetResponses, unknown, ThrowOnError>;
 /**
- * /assets/:assetId/customfields/:customFieldId
+ * Set custom field value(s) on an asset
+ *
+ * Body:
+ * - values - an array of objects containing the id of the custom field value to set (used for single-select and multi-select)
+ * - value - a string containing the value to set (used for plain-text and date)
+ *
+ * To unset a custom field on an asset, set the relevant property above to null
+ *
  */
-export declare const putV1AssetsByAssetIdCustomfieldsByCustomFieldId: <ThrowOnError extends boolean = false>(options: Options<PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdData, ThrowOnError>) => import("./client").RequestResult<PutV1AssetsByAssetIdCustomfieldsByCustomFieldIdResponses, unknown, ThrowOnError>;
-export declare const getV1AssetsByAssetIdVersions: <ThrowOnError extends boolean = false>(options: Options<GetV1AssetsByAssetIdVersionsData, ThrowOnError>) => import("./client").RequestResult<GetV1AssetsByAssetIdVersionsResponses, unknown, ThrowOnError>;
+export declare const setAssetCustomField: <ThrowOnError extends boolean = false>(options: Options<SetAssetCustomFieldData, ThrowOnError>) => import("./client").RequestResult<SetAssetCustomFieldResponses, unknown, ThrowOnError>;
+/**
+ * Get a list of asset versions associated with an asset.
+ */
+export declare const listAssetVersions: <ThrowOnError extends boolean = false>(options: Options<ListAssetVersionsData, ThrowOnError>) => import("./client").RequestResult<ListAssetVersionsResponses, unknown, ThrowOnError>;
 /**
  * Get an asset version associated with an asset, including metadata fields like `IPTC` and `EXIF`.
  */
 export declare const getAssetVersion: <ThrowOnError extends boolean = false>(options: Options<GetAssetVersionData, ThrowOnError>) => import("./client").RequestResult<GetAssetVersionResponses, unknown, ThrowOnError>;
 /**
- * /assets/:assetId/versions/:versionId
+ * Update an asset version
+ *
+ * Body:
+ * - title - the title of the version
+ * - description - the description of the version
+ *
  */
-export declare const patchV1AssetsByAssetIdVersionsByVersionId: <ThrowOnError extends boolean = false>(options: Options<PatchV1AssetsByAssetIdVersionsByVersionIdData, ThrowOnError>) => import("./client").RequestResult<PatchV1AssetsByAssetIdVersionsByVersionIdResponses, unknown, ThrowOnError>;
+export declare const updateAssetVersion: <ThrowOnError extends boolean = false>(options: Options<UpdateAssetVersionData, ThrowOnError>) => import("./client").RequestResult<UpdateAssetVersionResponses, unknown, ThrowOnError>;
 /**
- * /assets/:assetId/versions/:versionId/download
+ * Get the download URL of an asset version
  */
-export declare const getV1AssetsByAssetIdVersionsByVersionIdDownload: <ThrowOnError extends boolean = false>(options: Options<GetV1AssetsByAssetIdVersionsByVersionIdDownloadData, ThrowOnError>) => import("./client").RequestResult<GetV1AssetsByAssetIdVersionsByVersionIdDownloadResponses, unknown, ThrowOnError>;
+export declare const getAssetVersionDownloadUrl: <ThrowOnError extends boolean = false>(options: Options<GetAssetVersionDownloadUrlData, ThrowOnError>) => import("./client").RequestResult<GetAssetVersionDownloadUrlResponses, unknown, ThrowOnError>;
 /**
- * /assets/:assetId/versions/:versionId/tags
+ * Add one or more tags to an asset version
+ *
+ * Body:
+ * - id - the id of the tag to add to the version
+ *
  */
-export declare const postV1AssetsByAssetIdVersionsByVersionIdTags: <ThrowOnError extends boolean = false>(options: Options<PostV1AssetsByAssetIdVersionsByVersionIdTagsData, ThrowOnError>) => import("./client").RequestResult<PostV1AssetsByAssetIdVersionsByVersionIdTagsResponses, unknown, ThrowOnError>;
+export declare const addAssetVersionTag: <ThrowOnError extends boolean = false>(options: Options<AddAssetVersionTagData, ThrowOnError>) => import("./client").RequestResult<AddAssetVersionTagResponses, unknown, ThrowOnError>;
 /**
- * /assets/:assetId/versions/:versionId/tags/:tagId
+ * Delete a tag from an asset version
  */
-export declare const deleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1AssetsByAssetIdVersionsByVersionIdTagsByTagIdResponses, unknown, ThrowOnError>;
+export declare const deleteAssetVersionTag: <ThrowOnError extends boolean = false>(options: Options<DeleteAssetVersionTagData, ThrowOnError>) => import("./client").RequestResult<DeleteAssetVersionTagResponses, unknown, ThrowOnError>;
 /**
- * /assets/:assetId/boards
+ * Get the list of parent boards of an asset
  */
-export declare const getV1AssetsByAssetIdBoards: <ThrowOnError extends boolean = false>(options: Options<GetV1AssetsByAssetIdBoardsData, ThrowOnError>) => import("./client").RequestResult<GetV1AssetsByAssetIdBoardsResponses, unknown, ThrowOnError>;
+export declare const listAssetBoards: <ThrowOnError extends boolean = false>(options: Options<ListAssetBoardsData, ThrowOnError>) => import("./client").RequestResult<ListAssetBoardsResponses, unknown, ThrowOnError>;
 /**
- * /boards
+ * Get the list of boards defined in an Air workspace.
  */
-export declare const getV1Boards: <ThrowOnError extends boolean = false>(options?: Options<GetV1BoardsData, ThrowOnError>) => import("./client").RequestResult<GetV1BoardsResponses, unknown, ThrowOnError>;
+export declare const listBoards: <ThrowOnError extends boolean = false>(options?: Options<ListBoardsData, ThrowOnError>) => import("./client").RequestResult<ListBoardsResponses, unknown, ThrowOnError>;
 /**
- * /boards
+ * Create a board at the top-level of the workspace or as a child of another board
+ *
+ * Body:
+ * - title - the title of the board
+ * - description - the description of the board
+ * - parentBoardId (optional) - the id of the parent board that this board will be a child of
+ *
  */
-export declare const postV1Boards: <ThrowOnError extends boolean = false>(options?: Options<PostV1BoardsData, ThrowOnError>) => import("./client").RequestResult<PostV1BoardsResponses, unknown, ThrowOnError>;
+export declare const createBoard: <ThrowOnError extends boolean = false>(options?: Options<CreateBoardData, ThrowOnError>) => import("./client").RequestResult<CreateBoardResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId
+ * Delete a board and any assets that are only contained in this board or its direct descendant boards.
  */
-export declare const deleteV1BoardsByBoardId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1BoardsByBoardIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1BoardsByBoardIdResponses, unknown, ThrowOnError>;
+export declare const deleteBoard: <ThrowOnError extends boolean = false>(options: Options<DeleteBoardData, ThrowOnError>) => import("./client").RequestResult<DeleteBoardResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId
+ * Get a board
  */
-export declare const getV1BoardsByBoardId: <ThrowOnError extends boolean = false>(options: Options<GetV1BoardsByBoardIdData, ThrowOnError>) => import("./client").RequestResult<GetV1BoardsByBoardIdResponses, unknown, ThrowOnError>;
+export declare const getBoard: <ThrowOnError extends boolean = false>(options: Options<GetBoardData, ThrowOnError>) => import("./client").RequestResult<GetBoardResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId
+ * Update one or more properties on a board
+ *
+ * Body:
+ * - title - the title of the board
+ * - description - the description of the board
+ * - parentBoardId - the parent board this board is a child of. null will move the board to the root.
+ *
  */
-export declare const patchV1BoardsByBoardId: <ThrowOnError extends boolean = false>(options: Options<PatchV1BoardsByBoardIdData, ThrowOnError>) => import("./client").RequestResult<PatchV1BoardsByBoardIdResponses, unknown, ThrowOnError>;
+export declare const updateBoard: <ThrowOnError extends boolean = false>(options: Options<UpdateBoardData, ThrowOnError>) => import("./client").RequestResult<UpdateBoardResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId/customfields/:customFieldId
+ * Assign value(s) for a custom field on a board
+ *
+ * Body:
+ * - values - a list of objects with the id of the value to be set on the board for the custom field (used with single-select and multi-select custom fields)
+ * - value - the string value to be set for the custom field on the board (used with plain-text and date custom fields)
+ *
  */
-export declare const putV1BoardsByBoardIdCustomfieldsByCustomFieldId: <ThrowOnError extends boolean = false>(options: Options<PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdData, ThrowOnError>) => import("./client").RequestResult<PutV1BoardsByBoardIdCustomfieldsByCustomFieldIdResponses, unknown, ThrowOnError>;
+export declare const setBoardCustomField: <ThrowOnError extends boolean = false>(options: Options<SetBoardCustomFieldData, ThrowOnError>) => import("./client").RequestResult<SetBoardCustomFieldResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId/assets
+ * Associates one or more assets to a board
+ *
+ * Body:
+ * - assetIds - an array of assetIds to associate with the board
+ *
  */
-export declare const postV1BoardsByBoardIdAssets: <ThrowOnError extends boolean = false>(options: Options<PostV1BoardsByBoardIdAssetsData, ThrowOnError>) => import("./client").RequestResult<PostV1BoardsByBoardIdAssetsResponses, unknown, ThrowOnError>;
+export declare const addAssetsToBoard: <ThrowOnError extends boolean = false>(options: Options<AddAssetsToBoardData, ThrowOnError>) => import("./client").RequestResult<AddAssetsToBoardResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId/assets/:assetId
+ * Removes an asset from a board
  */
-export declare const deleteV1BoardsByBoardIdAssetsByAssetId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1BoardsByBoardIdAssetsByAssetIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1BoardsByBoardIdAssetsByAssetIdResponses, unknown, ThrowOnError>;
+export declare const removeAssetFromBoard: <ThrowOnError extends boolean = false>(options: Options<RemoveAssetFromBoardData, ThrowOnError>) => import("./client").RequestResult<RemoveAssetFromBoardResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId/guests
+ * Get the list of guests of the board.
  */
-export declare const getV1BoardsByBoardIdGuests: <ThrowOnError extends boolean = false>(options: Options<GetV1BoardsByBoardIdGuestsData, ThrowOnError>) => import("./client").RequestResult<GetV1BoardsByBoardIdGuestsResponses, unknown, ThrowOnError>;
+export declare const listBoardGuests: <ThrowOnError extends boolean = false>(options: Options<ListBoardGuestsData, ThrowOnError>) => import("./client").RequestResult<ListBoardGuestsResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId/guests
+ * Add a guest to the board.
+ *
+ * Body:
+ * - email - email address of the user to be added as guest
+ * - roleId - id of the role to be associated with the guest
+ *
  */
-export declare const postV1BoardsByBoardIdGuests: <ThrowOnError extends boolean = false>(options: Options<PostV1BoardsByBoardIdGuestsData, ThrowOnError>) => import("./client").RequestResult<PostV1BoardsByBoardIdGuestsResponses, unknown, ThrowOnError>;
+export declare const addBoardGuest: <ThrowOnError extends boolean = false>(options: Options<AddBoardGuestData, ThrowOnError>) => import("./client").RequestResult<AddBoardGuestResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId/guests/:guestId
+ * Remove a guest from the board.
  */
-export declare const deleteV1BoardsByBoardIdGuestsByGuestId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1BoardsByBoardIdGuestsByGuestIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1BoardsByBoardIdGuestsByGuestIdResponses, unknown, ThrowOnError>;
+export declare const removeBoardGuest: <ThrowOnError extends boolean = false>(options: Options<RemoveBoardGuestData, ThrowOnError>) => import("./client").RequestResult<RemoveBoardGuestResponses, unknown, ThrowOnError>;
 /**
- * /boards/:boardId/guests/:guestId
+ * Change the role of a guest.
+ *
+ * Body:
+ * - roleId - id of the role to be associated with the guest
+ *
  */
-export declare const patchV1BoardsByBoardIdGuestsByGuestId: <ThrowOnError extends boolean = false>(options: Options<PatchV1BoardsByBoardIdGuestsByGuestIdData, ThrowOnError>) => import("./client").RequestResult<PatchV1BoardsByBoardIdGuestsByGuestIdResponses, unknown, ThrowOnError>;
+export declare const updateBoardGuest: <ThrowOnError extends boolean = false>(options: Options<UpdateBoardGuestData, ThrowOnError>) => import("./client").RequestResult<UpdateBoardGuestResponses, unknown, ThrowOnError>;
 /**
- * /customfields
+ * List custom fields
  */
-export declare const getV1Customfields: <ThrowOnError extends boolean = false>(options?: Options<GetV1CustomfieldsData, ThrowOnError>) => import("./client").RequestResult<GetV1CustomfieldsResponses, unknown, ThrowOnError>;
+export declare const listCustomFields: <ThrowOnError extends boolean = false>(options?: Options<ListCustomFieldsData, ThrowOnError>) => import("./client").RequestResult<ListCustomFieldsResponses, unknown, ThrowOnError>;
 /**
- * /customfields
+ * Create a custom field (maximum total allowed per workspace: 100)
+ *
+ * Body:
+ * - name - the name of the custom field
+ * - description - the description of the custom field
+ * - type - the type of the custom field
+ * - values - the values of a single-select or multi-select custom field
+ *
  */
-export declare const postV1Customfields: <ThrowOnError extends boolean = false>(options?: Options<PostV1CustomfieldsData, ThrowOnError>) => import("./client").RequestResult<PostV1CustomfieldsResponses, PostV1CustomfieldsErrors, ThrowOnError>;
+export declare const createCustomField: <ThrowOnError extends boolean = false>(options?: Options<CreateCustomFieldData, ThrowOnError>) => import("./client").RequestResult<CreateCustomFieldResponses, CreateCustomFieldErrors, ThrowOnError>;
 /**
- * /customfields/:customFieldId:
+ * Delete a custom field
  */
-export declare const deleteV1CustomfieldsByCustomFieldId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1CustomfieldsByCustomFieldIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1CustomfieldsByCustomFieldIdResponses, unknown, ThrowOnError>;
+export declare const deleteCustomField: <ThrowOnError extends boolean = false>(options: Options<DeleteCustomFieldData, ThrowOnError>) => import("./client").RequestResult<DeleteCustomFieldResponses, unknown, ThrowOnError>;
 /**
- * /customfields/:customFieldId
+ * Get a custom field
  */
-export declare const getV1CustomfieldsByCustomFieldId: <ThrowOnError extends boolean = false>(options: Options<GetV1CustomfieldsByCustomFieldIdData, ThrowOnError>) => import("./client").RequestResult<GetV1CustomfieldsByCustomFieldIdResponses, unknown, ThrowOnError>;
+export declare const getCustomField: <ThrowOnError extends boolean = false>(options: Options<GetCustomFieldData, ThrowOnError>) => import("./client").RequestResult<GetCustomFieldResponses, unknown, ThrowOnError>;
 /**
- * /customfields/:customFieldId:
+ * Update one or more properties on a custom field
+ *
+ * Body:
+ * - name - the name of the custom field
+ * - description - the description of the custom field
+ *
+ * *type is immutable due to workflows being built on top of custom fields
+ *
  */
-export declare const patchV1CustomfieldsByCustomFieldId: <ThrowOnError extends boolean = false>(options: Options<PatchV1CustomfieldsByCustomFieldIdData, ThrowOnError>) => import("./client").RequestResult<PatchV1CustomfieldsByCustomFieldIdResponses, unknown, ThrowOnError>;
+export declare const updateCustomField: <ThrowOnError extends boolean = false>(options: Options<UpdateCustomFieldData, ThrowOnError>) => import("./client").RequestResult<UpdateCustomFieldResponses, unknown, ThrowOnError>;
 /**
- * /customfields/:customFieldId:/values
+ * Add a new value to a single-select or multi-select custom field.
+ *
+ * Body:
+ * - name - the name of the custom field value
+ *
  */
-export declare const postV1CustomfieldsByCustomFieldIdValues: <ThrowOnError extends boolean = false>(options: Options<PostV1CustomfieldsByCustomFieldIdValuesData, ThrowOnError>) => import("./client").RequestResult<PostV1CustomfieldsByCustomFieldIdValuesResponses, unknown, ThrowOnError>;
+export declare const addCustomFieldValue: <ThrowOnError extends boolean = false>(options: Options<AddCustomFieldValueData, ThrowOnError>) => import("./client").RequestResult<AddCustomFieldValueResponses, unknown, ThrowOnError>;
 /**
- * /customfields/:customFieldId:/values/:valueId
+ * Delete a value off of a custom field
  */
-export declare const deleteV1CustomfieldsByCustomFieldIdValuesByValueId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1CustomfieldsByCustomFieldIdValuesByValueIdResponses, unknown, ThrowOnError>;
+export declare const deleteCustomFieldValue: <ThrowOnError extends boolean = false>(options: Options<DeleteCustomFieldValueData, ThrowOnError>) => import("./client").RequestResult<DeleteCustomFieldValueResponses, unknown, ThrowOnError>;
 /**
- * /customfields/:customFieldId:/values/:valueId
+ * Update one or more properties on a value
  */
-export declare const patchV1CustomfieldsByCustomFieldIdValuesByValueId: <ThrowOnError extends boolean = false>(options: Options<PatchV1CustomfieldsByCustomFieldIdValuesByValueIdData, ThrowOnError>) => import("./client").RequestResult<PatchV1CustomfieldsByCustomFieldIdValuesByValueIdResponses, unknown, ThrowOnError>;
+export declare const updateCustomFieldValue: <ThrowOnError extends boolean = false>(options: Options<UpdateCustomFieldValueData, ThrowOnError>) => import("./client").RequestResult<UpdateCustomFieldValueResponses, unknown, ThrowOnError>;
 /**
- * /tags
+ * List tags in the workspace
  */
-export declare const getV1Tags: <ThrowOnError extends boolean = false>(options?: Options<GetV1TagsData, ThrowOnError>) => import("./client").RequestResult<GetV1TagsResponses, unknown, ThrowOnError>;
+export declare const listTags: <ThrowOnError extends boolean = false>(options?: Options<ListTagsData, ThrowOnError>) => import("./client").RequestResult<ListTagsResponses, unknown, ThrowOnError>;
 /**
- * /tags
+ * Create a new tag
+ *
+ * Body:
+ * - name - the name of the tag
+ *
  */
-export declare const postV1Tags: <ThrowOnError extends boolean = false>(options?: Options<PostV1TagsData, ThrowOnError>) => import("./client").RequestResult<PostV1TagsResponses, unknown, ThrowOnError>;
+export declare const createTag: <ThrowOnError extends boolean = false>(options?: Options<CreateTagData, ThrowOnError>) => import("./client").RequestResult<CreateTagResponses, unknown, ThrowOnError>;
 /**
- * /tags/:tagId
+ * Delete a tag
  */
-export declare const deleteV1TagsByTagId: <ThrowOnError extends boolean = false>(options: Options<DeleteV1TagsByTagIdData, ThrowOnError>) => import("./client").RequestResult<DeleteV1TagsByTagIdResponses, unknown, ThrowOnError>;
+export declare const deleteTag: <ThrowOnError extends boolean = false>(options: Options<DeleteTagData, ThrowOnError>) => import("./client").RequestResult<DeleteTagResponses, unknown, ThrowOnError>;
 /**
- * /tags/:tagId
+ * Update one or more properties on a tag
  */
-export declare const patchV1TagsByTagId: <ThrowOnError extends boolean = false>(options: Options<PatchV1TagsByTagIdData, ThrowOnError>) => import("./client").RequestResult<PatchV1TagsByTagIdResponses, unknown, ThrowOnError>;
+export declare const updateTag: <ThrowOnError extends boolean = false>(options: Options<UpdateTagData, ThrowOnError>) => import("./client").RequestResult<UpdateTagResponses, unknown, ThrowOnError>;
 /**
- * /uploads
+ * Upload an asset to a workspace
+ *
+ * Body:
+ * - fileName - the name of the file
+ * - ext - the extension of the file
+ * - size - the size of the file
+ * - mime - the mime of the file
+ * - recordedAt - when the file was created
+ * - parentBoardId (optional) - the parent board to create the asset under
+ * - assetId (optional) - the parent asset to create a new version for this file under
+ * - customFields (optional) - the list of custom fields and values to assign to the asset
+ * - tags (optional) - the list of tags to assign to the asset version
+ *
  */
-export declare const postV1Uploads: <ThrowOnError extends boolean = false>(options?: Options<PostV1UploadsData, ThrowOnError>) => import("./client").RequestResult<PostV1UploadsResponses, unknown, ThrowOnError>;
+export declare const createUpload: <ThrowOnError extends boolean = false>(options?: Options<CreateUploadData, ThrowOnError>) => import("./client").RequestResult<CreateUploadResponses, unknown, ThrowOnError>;
 /**
- * uploads/uploadPart
+ * Create a part upload url
+ *
+ * Body:
+ * - multiPartUploadId - upload id returned from POST /uploads
+ * - key - key returned from POST /uploads
+ * - partNumber - the number associated with the chunk being uploaded
+ *
  */
-export declare const postV1UploadsUploadPart: <ThrowOnError extends boolean = false>(options?: Options<PostV1UploadsUploadPartData, ThrowOnError>) => import("./client").RequestResult<PostV1UploadsUploadPartResponses, unknown, ThrowOnError>;
+export declare const createUploadPart: <ThrowOnError extends boolean = false>(options?: Options<CreateUploadPartData, ThrowOnError>) => import("./client").RequestResult<CreateUploadPartResponses, unknown, ThrowOnError>;
 /**
- * uploads/completeMultipart
+ * Complete a large file upload
+ *
+ * Body:
+ * - multiPartUploadId - the upload id returned from POST /uploads
+ * - key - the key returned from POST /uploads
+ * - parts - an array of objects containing the etag (returned from file upload) and partNumber for each chunk
+ *
  */
-export declare const postV1CompleteMultipart: <ThrowOnError extends boolean = false>(options?: Options<PostV1CompleteMultipartData, ThrowOnError>) => import("./client").RequestResult<PostV1CompleteMultipartResponses, unknown, ThrowOnError>;
+export declare const completeMultipartUpload: <ThrowOnError extends boolean = false>(options?: Options<CompleteMultipartUploadData, ThrowOnError>) => import("./client").RequestResult<CompleteMultipartUploadResponses, unknown, ThrowOnError>;
 /**
- * /imports
+ * Create an import of an asset or asset version from a public URL.
+ *
+ * Request Body:
+ * - sourceUrl - the URL to get the file content. The URL needs to be publicly accessible.
+ * - fileName (optional) - the name of the file. If not provided then it will be determined from the URL.
+ * - ext (optional) - the extension of the file. If not provided then the ext will be pulled from the URL or defaulted to .file
+ * - recordedAt (optional) - when the file was created. If not provided the servers current time will be used.
+ * - assetId (optional) - the parent asset to create a new version for this file under.
+ * - parentBoardId (optional) - the parent board to create the asset under.
+ * - customFields (optional) - the list of custom fields and values to assign to the asset.
+ * - tags (optional) - the list of tags to assign to the asset version.
+ * - title (optional) - the title to assign to the asset version.
+ * - description (optional) - the description to assign to the asset version.
+ *
  */
-export declare const postV1Imports: <ThrowOnError extends boolean = false>(options?: Options<PostV1ImportsData, ThrowOnError>) => import("./client").RequestResult<PostV1ImportsResponses, unknown, ThrowOnError>;
+export declare const createImport: <ThrowOnError extends boolean = false>(options?: Options<CreateImportData, ThrowOnError>) => import("./client").RequestResult<CreateImportResponses, unknown, ThrowOnError>;
 /**
- * /imports/:importId/status
+ * Retrieve the status of a specific import by providing the import ID in the URL.
+ *
+ * Response:
+ * The body of the response will contain a JSON object with "status" and also "error" if the import is failed.
+ * - status:
+ * - pending - the import is waiting to be scheduled.
+ * - inProgress - the import is in progress.
+ * - failed - the import has failed.
+ * - succeeded - the import completed.
+ * - error: An object containing the error type and message if the import failed.
+ * - SOURCE_FILE_NOT_FOUND - the file is not found from source Url when executing task.
+ * - SOURCE_URL_BLOCKED - the source URL is to be blocked by the block rules.
+ * - SOURCE_URL_INVALID - the file URL returns 4xx, 5xx errors.
+ * - PROCESS_TIMED_OUT - exceeded the maximum amount of time allowed
+ *
  */
-export declare const getV1ImportsByImportIdStatus: <ThrowOnError extends boolean = false>(options: Options<GetV1ImportsByImportIdStatusData, ThrowOnError>) => import("./client").RequestResult<GetV1ImportsByImportIdStatusResponses, unknown, ThrowOnError>;
+export declare const getImportStatus: <ThrowOnError extends boolean = false>(options: Options<GetImportStatusData, ThrowOnError>) => import("./client").RequestResult<GetImportStatusResponses, unknown, ThrowOnError>;
 /**
- * /roles
+ * Get the list of guest roles available in a workspace.
  */
-export declare const getV1Roles: <ThrowOnError extends boolean = false>(options?: Options<GetV1RolesData, ThrowOnError>) => import("./client").RequestResult<GetV1RolesResponses, unknown, ThrowOnError>;
+export declare const listRoles: <ThrowOnError extends boolean = false>(options?: Options<ListRolesData, ThrowOnError>) => import("./client").RequestResult<ListRolesResponses, unknown, ThrowOnError>;

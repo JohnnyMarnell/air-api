@@ -4,196 +4,14 @@
  */
 export interface paths {
     "/v1/assets": {
-        /** /assets */
-        get: {
-            parameters: {
-                query?: {
-                    /** @description The maximum number of assets to return in the response */
-                    limit?: number;
-                    /** @description Cursor to the next page of assets */
-                    cursor?: string;
-                    /** @description The parent board ID of the assets to return */
-                    parentBoardId?: string;
-                    /** @description Filter assets by attached tags. If multiple `tag=value` pairs are provided, only assets with all specified tags will be included. */
-                    tag?: string;
-                };
-            };
-            responses: {
-                /** @description Filter by tag */
-                200: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                customFields?: {
-                                    id?: string;
-                                    name?: string;
-                                    type?: string;
-                                    values?: {
-                                        id?: string;
-                                        name?: string;
-                                    }[];
-                                }[];
-                                coverVersion?: {
-                                    id?: string;
-                                    fileName?: string;
-                                    description?: string;
-                                    ext?: string;
-                                    title?: string;
-                                    type?: string;
-                                    /** Format: style */
-                                    createdAt?: string;
-                                    uploadedAt?: string;
-                                    /** Format: style */
-                                    fileCreatedAt?: string;
-                                    width?: number;
-                                    height?: number;
-                                    size?: number;
-                                    tags?: {
-                                        id?: string;
-                                        label?: string;
-                                    }[];
-                                    urls?: {
-                                        /** Format: uri */
-                                        thumbnail?: string;
-                                        /** Format: uri */
-                                        preview?: string;
-                                    };
-                                };
-                            }[];
-                            pagination?: {
-                                hasMore?: boolean;
-                                cursor?: unknown;
-                            };
-                            total?: number;
-                        };
-                    };
-                };
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                customFields?: {
-                                    id?: string;
-                                    name?: string;
-                                    type?: string;
-                                    values?: {
-                                        id?: string;
-                                        name?: string;
-                                    }[];
-                                }[];
-                                coverVersion?: {
-                                    id?: string;
-                                    fileName?: string;
-                                    description?: string;
-                                    ext?: string;
-                                    title?: string;
-                                    type?: string;
-                                    /** Format: style */
-                                    createdAt?: string;
-                                    uploadedAt?: string;
-                                    /** Format: style */
-                                    fileCreatedAt?: string;
-                                    width?: number;
-                                    height?: number;
-                                    size?: number;
-                                    tags?: {
-                                        id?: string;
-                                        label?: string;
-                                    }[];
-                                    urls?: {
-                                        /** Format: uri */
-                                        thumbnail?: string;
-                                        /** Format: uri */
-                                        preview?: string;
-                                    };
-                                };
-                            }[];
-                            pagination?: {
-                                hasMore?: boolean;
-                                cursor?: unknown;
-                            };
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Get a list of assets. */
+        get: operations["listAssets"];
     };
     "/v1/assets/{assetId}": {
-        /** /assets/:assetId */
-        get: {
-            parameters: {
-                path: {
-                    assetId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            customFields?: {
-                                id?: string;
-                                name?: string;
-                                type?: string;
-                                values?: {
-                                    id?: string;
-                                    name?: string;
-                                }[];
-                            }[];
-                            coverVersion?: {
-                                id?: string;
-                                fileName?: string;
-                                description?: string;
-                                ext?: string;
-                                title?: string;
-                                type?: string;
-                                /** Format: style */
-                                createdAt?: string;
-                                uploadedAt?: string;
-                                /** Format: style */
-                                fileCreatedAt?: string;
-                                width?: number;
-                                height?: number;
-                                size?: number;
-                                tags?: {
-                                    id?: string;
-                                    label?: string;
-                                }[];
-                                urls?: {
-                                    /** Format: uri */
-                                    thumbnail?: string;
-                                    /** Format: uri */
-                                    preview?: string;
-                                };
-                            };
-                        };
-                    };
-                };
-            };
-        };
-        /** /assets/:assetId */
-        delete: {
-            parameters: {
-                path: {
-                    assetId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: never;
-                };
-            };
-        };
+        /** @description Get an asset */
+        get: operations["getAsset"];
+        /** @description Delete an asset */
+        delete: operations["deleteAsset"];
         parameters: {
             path: {
                 assetId: string;
@@ -201,26 +19,16 @@ export interface paths {
         };
     };
     "/v1/assets/{assetId}/customfields/{customFieldId}": {
-        /** /assets/:assetId/customfields/:customFieldId */
-        put: {
-            parameters: {
-                path: {
-                    /** @description the id of the asset */
-                    assetId: string;
-                    /** @description the id of the custom field */
-                    customFieldId: string;
-                };
-            };
-            responses: {
-                /** @description single-select */
-                200: {
-                    headers: {};
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
+        /**
+         * @description Set custom field value(s) on an asset
+         *
+         * Body:
+         * - values - an array of objects containing the id of the custom field value to set (used for single-select and multi-select)
+         * - value - a string containing the value to set (used for plain-text and date)
+         *
+         * To unset a custom field on an asset, set the relevant property above to null
+         */
+        put: operations["setAssetCustomField"];
         parameters: {
             path: {
                 /** @description the id of the asset */
@@ -231,45 +39,8 @@ export interface paths {
         };
     };
     "/v1/assets/{assetId}/versions": {
-        get: {
-            parameters: {
-                path: {
-                    /** @description The id of the asset */
-                    assetId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                fileName?: string;
-                                description?: string;
-                                ext?: string;
-                                title?: string;
-                                type?: string;
-                                /** Format: style */
-                                createdAt?: string;
-                                uploadedAt?: string;
-                                width?: number;
-                                height?: number;
-                                size?: number;
-                                urls?: {
-                                    /** Format: uri */
-                                    thumbnail?: string;
-                                    /** Format: uri */
-                                    preview?: string;
-                                };
-                            }[];
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Get a list of asset versions associated with an asset. */
+        get: operations["listAssetVersions"];
         parameters: {
             path: {
                 /** @description The id of the asset */
@@ -280,34 +51,14 @@ export interface paths {
     "/v1/assets/{assetId}/versions/{versionId}": {
         /** @description Get an asset version associated with an asset, including metadata fields like `IPTC` and `EXIF`. */
         get: operations["getAssetVersion"];
-        /** /assets/:assetId/versions/:versionId */
-        patch: {
-            parameters: {
-                path: {
-                    /** @description the id of the asset */
-                    assetId: string;
-                    /** @description the id of the version */
-                    versionId: string;
-                };
-            };
-            requestBody?: {
-                content: {
-                    "application/json": {
-                        title?: string;
-                        description?: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
+        /**
+         * @description Update an asset version
+         *
+         * Body:
+         * - title - the title of the version
+         * - description - the description of the version
+         */
+        patch: operations["updateAssetVersion"];
         parameters: {
             path: {
                 /** @description the id of the asset */
@@ -318,31 +69,8 @@ export interface paths {
         };
     };
     "/v1/assets/{assetId}/versions/{versionId}/download": {
-        /** /assets/:assetId/versions/:versionId/download */
-        get: {
-            parameters: {
-                path: {
-                    /** @description the id of the asset */
-                    assetId: string;
-                    /** @description the id of the version */
-                    versionId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            /** Format: uri */
-                            url?: string;
-                            /** Format: date-time */
-                            expiresAt?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Get the download URL of an asset version */
+        get: operations["getAssetVersionDownloadUrl"];
         parameters: {
             path: {
                 /** @description the id of the asset */
@@ -353,24 +81,13 @@ export interface paths {
         };
     };
     "/v1/assets/{assetId}/versions/{versionId}/tags": {
-        /** /assets/:assetId/versions/:versionId/tags */
-        post: {
-            parameters: {
-                path: {
-                    /** @description the id of the asset */
-                    assetId: string;
-                    /** @description the id of the version */
-                    versionId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: never;
-                };
-            };
-        };
+        /**
+         * @description Add one or more tags to an asset version
+         *
+         * Body:
+         * - id - the id of the tag to add to the version
+         */
+        post: operations["addAssetVersionTag"];
         parameters: {
             path: {
                 /** @description the id of the asset */
@@ -381,26 +98,8 @@ export interface paths {
         };
     };
     "/v1/assets/{assetId}/versions/{versionId}/tags/{tagId}": {
-        /** /assets/:assetId/versions/:versionId/tags/:tagId */
-        delete: {
-            parameters: {
-                path: {
-                    /** @description the id of the asset */
-                    assetId: string;
-                    /** @description the id of the version */
-                    versionId: string;
-                    /** @description the id of the tag */
-                    tagId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: never;
-                };
-            };
-        };
+        /** @description Delete a tag from an asset version */
+        delete: operations["deleteAssetVersionTag"];
         parameters: {
             path: {
                 /** @description the id of the asset */
@@ -413,50 +112,8 @@ export interface paths {
         };
     };
     "/v1/assets/{assetId}/boards": {
-        /** /assets/:assetId/boards */
-        get: {
-            parameters: {
-                query?: {
-                    /** @description The max number of parent boards to return in the response */
-                    limit?: string;
-                    /** @description Cursor to the next page of parent boards */
-                    cursor?: string;
-                    /** @description A boolean flag to include custom fields with the results (default: `false`) */
-                    includeCustomFields?: string;
-                };
-                path: {
-                    /** @description the id of the asset */
-                    assetId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                parentBoardId?: string;
-                                title?: string;
-                                description?: string;
-                                /** Format: style */
-                                createdAt?: string;
-                                updatedAt?: string;
-                            }[];
-                            pagination?: {
-                                hasMore?: boolean;
-                                cursor?: unknown;
-                            };
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Get the list of parent boards of an asset */
+        get: operations["listAssetBoards"];
         parameters: {
             path: {
                 /** @description the id of the asset */
@@ -465,152 +122,32 @@ export interface paths {
         };
     };
     "/v1/boards": {
-        /** /boards */
-        get: {
-            parameters: {
-                query?: {
-                    /**
-                     * @description Free text board name search filter
-                     * @example :boardName
-                     */
-                    name?: string;
-                    /**
-                     * @description Limits the number of boards items to return in the response
-                     * @example :limit
-                     */
-                    limit?: string;
-                    /**
-                     * @description Cursor returned in the previous page of responses used to get the next page of results
-                     * @example :cursor
-                     */
-                    cursor?: string;
-                    /**
-                     * @description Used when navigating immediate child sub boards in a board hierarchy
-                     * @example :parentBoardId
-                     */
-                    parentBoardId?: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                title?: string;
-                                description?: string;
-                                parentBoardId?: string;
-                                /** Format: style */
-                                createdAt?: string;
-                                updatedAt?: string;
-                                customFields?: {
-                                    id?: string;
-                                    name?: string;
-                                    type?: string;
-                                    values?: {
-                                        id?: string;
-                                        name?: string;
-                                    }[];
-                                }[];
-                            }[];
-                            pagination?: {
-                                hasMore?: boolean;
-                                cursor?: unknown;
-                            };
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
-        /** /boards */
-        post: {
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            title?: string;
-                            description?: string;
-                            parentBoardId?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Get the list of boards defined in an Air workspace. */
+        get: operations["listBoards"];
+        /**
+         * @description Create a board at the top-level of the workspace or as a child of another board
+         *
+         * Body:
+         * - title - the title of the board
+         * - description - the description of the board
+         * - parentBoardId (optional) - the id of the parent board that this board will be a child of
+         */
+        post: operations["createBoard"];
     };
     "/v1/boards/{boardId}": {
-        /** /boards/:boardId */
-        get: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            title?: string;
-                            description?: string;
-                            parentBoardId?: string;
-                            /** Format: style */
-                            createdAt?: string;
-                            updatedAt?: string;
-                            customFields?: {
-                                id?: string;
-                                name?: string;
-                                type?: string;
-                                values?: {
-                                    id?: string;
-                                    name?: string;
-                                }[];
-                            }[];
-                        };
-                    };
-                };
-            };
-        };
-        /** /boards/:boardId */
-        delete: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: never;
-                };
-            };
-        };
-        /** /boards/:boardId */
-        patch: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: never;
-                };
-            };
-        };
+        /** @description Get a board */
+        get: operations["getBoard"];
+        /** @description Delete a board and any assets that are only contained in this board or its direct descendant boards. */
+        delete: operations["deleteBoard"];
+        /**
+         * @description Update one or more properties on a board
+         *
+         * Body:
+         * - title - the title of the board
+         * - description - the description of the board
+         * - parentBoardId - the parent board this board is a child of. null will move the board to the root.
+         */
+        patch: operations["updateBoard"];
         parameters: {
             path: {
                 /** @description the id of the board */
@@ -619,26 +156,14 @@ export interface paths {
         };
     };
     "/v1/boards/{boardId}/customfields/{customFieldId}": {
-        /** /boards/:boardId/customfields/:customFieldId */
-        put: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                    /** @description the id of the custom field */
-                    customFieldId: string;
-                };
-            };
-            responses: {
-                /** @description single-select */
-                200: {
-                    headers: {};
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
+        /**
+         * @description Assign value(s) for a custom field on a board
+         *
+         * Body:
+         * - values - a list of objects with the id of the value to be set on the board for the custom field (used with single-select and multi-select custom fields)
+         * - value - the string value to be set for the custom field on the board (used with plain-text and date custom fields)
+         */
+        put: operations["setBoardCustomField"];
         parameters: {
             path: {
                 /** @description the id of the board */
@@ -649,26 +174,13 @@ export interface paths {
         };
     };
     "/v1/boards/{boardId}/assets": {
-        /** /boards/:boardId/assets */
-        post: {
-            parameters: {
-                path: {
-                    boardId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
+        /**
+         * @description Associates one or more assets to a board
+         *
+         * Body:
+         * - assetIds - an array of assetIds to associate with the board
+         */
+        post: operations["addAssetsToBoard"];
         parameters: {
             path: {
                 boardId: string;
@@ -676,34 +188,8 @@ export interface paths {
         };
     };
     "/v1/boards/{boardId}/assets/{assetId}": {
-        /** /boards/:boardId/assets/:assetId */
-        delete: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                    /** @description the id of the asset */
-                    assetId: string;
-                };
-            };
-            requestBody?: {
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": unknown;
-                    };
-                };
-            };
-        };
+        /** @description Removes an asset from a board */
+        delete: operations["removeAssetFromBoard"];
         parameters: {
             path: {
                 /** @description the id of the board */
@@ -714,66 +200,16 @@ export interface paths {
         };
     };
     "/v1/boards/{boardId}/guests": {
-        /** /boards/:boardId/guests */
-        get: {
-            parameters: {
-                query?: {
-                    /** @description (optional) to filter with email */
-                    email?: string;
-                };
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                /** Format: email */
-                                email?: string;
-                                roleId?: string;
-                                boardId?: string;
-                            }[];
-                        };
-                    };
-                };
-            };
-        };
-        /** /boards/:boardId/guests */
-        post: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            /** Format: email */
-                            email?: string;
-                            roleId?: string;
-                            boardId?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Get the list of guests of the board. */
+        get: operations["listBoardGuests"];
+        /**
+         * @description Add a guest to the board.
+         *
+         * Body:
+         * - email - email address of the user to be added as guest
+         * - roleId - id of the role to be associated with the guest
+         */
+        post: operations["addBoardGuest"];
         parameters: {
             path: {
                 /** @description the id of the board */
@@ -782,57 +218,15 @@ export interface paths {
         };
     };
     "/v1/boards/{boardId}/guests/{guestId}": {
-        /** /boards/:boardId/guests/:guestId */
-        delete: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                    /** @description the id of the guest */
-                    guestId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
-        /** /boards/:boardId/guests/:guestId */
-        patch: {
-            parameters: {
-                path: {
-                    /** @description the id of the board */
-                    boardId: string;
-                    /** @description the id of the guest */
-                    guestId: string;
-                };
-            };
-            requestBody?: {
-                content: {
-                    "application/json": Record<string, never>;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
+        /** @description Remove a guest from the board. */
+        delete: operations["removeBoardGuest"];
+        /**
+         * @description Change the role of a guest.
+         *
+         * Body:
+         * - roleId - id of the role to be associated with the guest
+         */
+        patch: operations["updateBoardGuest"];
         parameters: {
             path: {
                 /** @description the id of the board */
@@ -843,153 +237,34 @@ export interface paths {
         };
     };
     "/v1/customfields": {
-        /** /customfields */
-        get: {
-            parameters: {
-                query?: {
-                    /**
-                     * @description Free text search for custom field names matching criteria
-                     * @example :customFieldName
-                     */
-                    name?: string;
-                    /**
-                     * @description The number of records returned
-                     * @example :limit
-                     */
-                    limit?: string;
-                    /**
-                     * @description The cursor returned to from previous page of results
-                     * @example :cursor
-                     */
-                    cursor?: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                name?: string;
-                                description?: string;
-                                /** Format: style */
-                                createdAt?: string;
-                                updatedAt?: string;
-                                type?: string;
-                            }[];
-                            pagination?: {
-                                hasMore?: boolean;
-                                cursor?: unknown;
-                            };
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
-        /** /customfields */
-        post: {
-            responses: {
-                /** @description multi-select */
-                200: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            name?: string;
-                            description?: string;
-                            type?: string;
-                            values?: {
-                                id?: string;
-                                name?: string;
-                            }[];
-                        };
-                    };
-                };
-                /** @description single-select */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            name?: string;
-                            description?: string;
-                            type?: string;
-                            values?: {
-                                id?: string;
-                                name?: string;
-                            }[];
-                        };
-                    };
-                };
-            };
-        };
+        /** @description List custom fields */
+        get: operations["listCustomFields"];
+        /**
+         * @description Create a custom field (maximum total allowed per workspace: 100)
+         *
+         * Body:
+         * - name - the name of the custom field
+         * - description - the description of the custom field
+         * - type - the type of the custom field
+         * - values - the values of a single-select or multi-select custom field
+         */
+        post: operations["createCustomField"];
     };
     "/v1/customfields/{customFieldId}": {
-        /** /customfields/:customFieldId */
-        get: {
-            parameters: {
-                path: {
-                    /** @description The id of the custom field to update */
-                    customFieldId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            name?: string;
-                            description?: string;
-                            /** Format: style */
-                            createdAt?: string;
-                            updatedAt?: string;
-                            type?: string;
-                            values?: {
-                                id?: string;
-                                name?: string;
-                            }[];
-                        };
-                    };
-                };
-            };
-        };
-        /** /customfields/:customFieldId: */
-        delete: {
-            parameters: {
-                path: {
-                    /** @description The id of the custom field to update */
-                    customFieldId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: never;
-                };
-            };
-        };
-        /** /customfields/:customFieldId: */
-        patch: {
-            parameters: {
-                path: {
-                    /** @description The id of the custom field to update */
-                    customFieldId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {};
-                    content: never;
-                };
-            };
-        };
+        /** @description Get a custom field */
+        get: operations["getCustomField"];
+        /** @description Delete a custom field */
+        delete: operations["deleteCustomField"];
+        /**
+         * @description Update one or more properties on a custom field
+         *
+         * Body:
+         * - name - the name of the custom field
+         * - description - the description of the custom field
+         *
+         * *type is immutable due to workflows being built on top of custom fields
+         */
+        patch: operations["updateCustomField"];
         parameters: {
             path: {
                 /** @description The id of the custom field to update */
@@ -998,27 +273,13 @@ export interface paths {
         };
     };
     "/v1/customfields/{customFieldId}/values": {
-        /** /customfields/:customFieldId:/values */
-        post: {
-            parameters: {
-                path: {
-                    /** @description the id of the custom field */
-                    customFieldId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            name?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /**
+         * @description Add a new value to a single-select or multi-select custom field.
+         *
+         * Body:
+         * - name - the name of the custom field value
+         */
+        post: operations["addCustomFieldValue"];
         parameters: {
             path: {
                 /** @description the id of the custom field */
@@ -1027,49 +288,10 @@ export interface paths {
         };
     };
     "/v1/customfields/{customFieldId}/values/{valueId}": {
-        /** /customfields/:customFieldId:/values/:valueId */
-        delete: {
-            parameters: {
-                path: {
-                    /** @description the id of the custom field */
-                    customFieldId: string;
-                    /** @description the id of the custom field value to delete */
-                    valueId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
-        /** /customfields/:customFieldId:/values/:valueId */
-        patch: {
-            parameters: {
-                path: {
-                    /** @description the id of the custom field */
-                    customFieldId: string;
-                    /** @description the id of the custom field value to delete */
-                    valueId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            name?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Delete a value off of a custom field */
+        delete: operations["deleteCustomFieldValue"];
+        /** @description Update one or more properties on a value */
+        patch: operations["updateCustomFieldValue"];
         parameters: {
             path: {
                 /** @description the id of the custom field */
@@ -1080,103 +302,21 @@ export interface paths {
         };
     };
     "/v1/tags": {
-        /** /tags */
-        get: {
-            parameters: {
-                query?: {
-                    /**
-                     * @description Free text search for tag names matching criteria
-                     * @example :name
-                     */
-                    name?: string;
-                    /**
-                     * @description The number of records returned
-                     * @example :limit
-                     */
-                    limit?: string;
-                    /**
-                     * @description The cursor returned to from previous page of results
-                     * @example :cursor
-                     */
-                    cursor?: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                name?: string;
-                            }[];
-                            pagination?: {
-                                hasMore?: boolean;
-                                cursor?: unknown;
-                            };
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
-        /** /tags */
-        post: {
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            name?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description List tags in the workspace */
+        get: operations["listTags"];
+        /**
+         * @description Create a new tag
+         *
+         * Body:
+         * - name - the name of the tag
+         */
+        post: operations["createTag"];
     };
     "/v1/tags/{tagId}": {
-        /** /tags/:tagId */
-        delete: {
-            parameters: {
-                path: {
-                    /** @description the id of the tag */
-                    tagId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                204: {
-                    headers: {};
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
-        /** /tags/:tagId */
-        patch: {
-            parameters: {
-                path: {
-                    /** @description the id of the tag */
-                    tagId: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                default: {
-                    headers: {};
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            name?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Delete a tag */
+        delete: operations["deleteTag"];
+        /** @description Update one or more properties on a tag */
+        patch: operations["updateTag"];
         parameters: {
             path: {
                 /** @description the id of the tag */
@@ -1185,124 +325,80 @@ export interface paths {
         };
     };
     "/v1/uploads": {
-        /** /uploads */
-        post: {
-            responses: {
-                /** @description Small File (<5G) */
-                201: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            assetId?: string;
-                            versionId?: string;
-                            /** Format: uri */
-                            uploadUrl?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /**
+         * @description Upload an asset to a workspace
+         *
+         * Body:
+         * - fileName - the name of the file
+         * - ext - the extension of the file
+         * - size - the size of the file
+         * - mime - the mime of the file
+         * - recordedAt - when the file was created
+         * - parentBoardId (optional) - the parent board to create the asset under
+         * - assetId (optional) - the parent asset to create a new version for this file under
+         * - customFields (optional) - the list of custom fields and values to assign to the asset
+         * - tags (optional) - the list of tags to assign to the asset version
+         */
+        post: operations["createUpload"];
     };
     "/v1/uploads/uploadPart": {
-        /** uploads/uploadPart */
-        post: {
-            responses: {
-                /** @description Default */
-                201: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            /** Format: uri */
-                            url?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /**
+         * @description Create a part upload url
+         *
+         * Body:
+         * - multiPartUploadId - upload id returned from POST /uploads
+         * - key - key returned from POST /uploads
+         * - partNumber - the number associated with the chunk being uploaded
+         */
+        post: operations["createUploadPart"];
     };
     "/v1/completeMultipart": {
-        /** uploads/completeMultipart */
-        post: {
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": Record<string, never>;
-                    };
-                };
-            };
-        };
+        /**
+         * @description Complete a large file upload
+         *
+         * Body:
+         * - multiPartUploadId - the upload id returned from POST /uploads
+         * - key - the key returned from POST /uploads
+         * - parts - an array of objects containing the etag (returned from file upload) and partNumber for each chunk
+         */
+        post: operations["completeMultipartUpload"];
     };
     "/v1/imports": {
-        /** /imports */
-        post: {
-            parameters: {
-                header?: {
-                    /** @example {{workspaceId}} */
-                    "x-air-workspace-id"?: string;
-                };
-            };
-            requestBody?: {
-                content: {
-                    "application/json": Record<string, never>;
-                };
-            };
-            responses: {
-                /** @description Without metadata */
-                default: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            id?: string;
-                            assetId?: string;
-                            versionId?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /**
+         * @description Create an import of an asset or asset version from a public URL.
+         *
+         * Request Body:
+         * - sourceUrl - the URL to get the file content. The URL needs to be publicly accessible.
+         * - fileName (optional) - the name of the file. If not provided then it will be determined from the URL.
+         * - ext (optional) - the extension of the file. If not provided then the ext will be pulled from the URL or defaulted to .file
+         * - recordedAt (optional) - when the file was created. If not provided the servers current time will be used.
+         * - assetId (optional) - the parent asset to create a new version for this file under.
+         * - parentBoardId (optional) - the parent board to create the asset under.
+         * - customFields (optional) - the list of custom fields and values to assign to the asset.
+         * - tags (optional) - the list of tags to assign to the asset version.
+         * - title (optional) - the title to assign to the asset version.
+         * - description (optional) - the description to assign to the asset version.
+         */
+        post: operations["createImport"];
     };
     "/v1/imports/{importId}/status": {
-        /** /imports/:importId/status */
-        get: {
-            parameters: {
-                header?: {
-                    /** @example {{workspaceId}} */
-                    "x-air-workspace-id"?: string;
-                };
-                path: {
-                    /** @example {{import-id}} */
-                    importId: string;
-                };
-            };
-            responses: {
-                /** @description succeeded */
-                default: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            status?: string;
-                        };
-                    };
-                };
-            };
-        };
+        /**
+         * @description Retrieve the status of a specific import by providing the import ID in the URL.
+         *
+         * Response:
+         * The body of the response will contain a JSON object with "status" and also "error" if the import is failed.
+         * - status:
+         *   - pending - the import is waiting to be scheduled.
+         *   - inProgress - the import is in progress.
+         *   - failed - the import has failed.
+         *   - succeeded - the import completed.
+         * - error: An object containing the error type and message if the import failed.
+         *   - SOURCE_FILE_NOT_FOUND - the file is not found from source Url when executing task.
+         *   - SOURCE_URL_BLOCKED - the source URL is to be blocked by the block rules.
+         *   - SOURCE_URL_INVALID - the file URL returns 4xx, 5xx errors.
+         *   - PROCESS_TIMED_OUT - exceeded the maximum amount of time allowed
+         */
+        get: operations["getImportStatus"];
         parameters: {
             path: {
                 /** @example {{import-id}} */
@@ -1311,38 +407,8 @@ export interface paths {
         };
     };
     "/v1/roles": {
-        /** /roles */
-        get: {
-            parameters: {
-                query?: {
-                    /**
-                     * @description (required) to filter the roles by type
-                     * @example guest
-                     */
-                    type?: string;
-                };
-            };
-            responses: {
-                /** @description Default */
-                200: {
-                    headers: {
-                        /** @example application/json */
-                        "Content-Type"?: string;
-                    };
-                    content: {
-                        "application/json": {
-                            data?: {
-                                id?: string;
-                                name?: string;
-                                description?: string;
-                                billable?: boolean;
-                                type?: string;
-                            }[];
-                        };
-                    };
-                };
-            };
-        };
+        /** @description Get the list of guest roles available in a workspace. */
+        get: operations["listRoles"];
     };
 }
 export type webhooks = Record<string, never>;
@@ -1471,6 +537,262 @@ export interface components {
 export type $defs = Record<string, never>;
 export type external = Record<string, never>;
 export interface operations {
+    /** @description Get a list of assets. */
+    listAssets: {
+        parameters: {
+            query?: {
+                /** @description The maximum number of assets to return in the response */
+                limit?: number;
+                /** @description Cursor to the next page of assets */
+                cursor?: string;
+                /** @description The parent board ID of the assets to return */
+                parentBoardId?: string;
+                /** @description Filter assets by attached tags. If multiple `tag=value` pairs are provided, only assets with all specified tags will be included. */
+                tag?: string;
+            };
+        };
+        responses: {
+            /** @description Filter by tag */
+            200: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            customFields?: {
+                                id?: string;
+                                name?: string;
+                                type?: string;
+                                values?: {
+                                    id?: string;
+                                    name?: string;
+                                }[];
+                            }[];
+                            coverVersion?: {
+                                id?: string;
+                                fileName?: string;
+                                description?: string;
+                                ext?: string;
+                                title?: string;
+                                type?: string;
+                                /** Format: style */
+                                createdAt?: string;
+                                uploadedAt?: string;
+                                /** Format: style */
+                                fileCreatedAt?: string;
+                                width?: number;
+                                height?: number;
+                                size?: number;
+                                tags?: {
+                                    id?: string;
+                                    label?: string;
+                                }[];
+                                urls?: {
+                                    /** Format: uri */
+                                    thumbnail?: string;
+                                    /** Format: uri */
+                                    preview?: string;
+                                };
+                            };
+                        }[];
+                        pagination?: {
+                            hasMore?: boolean;
+                            cursor?: unknown;
+                        };
+                        total?: number;
+                    };
+                };
+            };
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            customFields?: {
+                                id?: string;
+                                name?: string;
+                                type?: string;
+                                values?: {
+                                    id?: string;
+                                    name?: string;
+                                }[];
+                            }[];
+                            coverVersion?: {
+                                id?: string;
+                                fileName?: string;
+                                description?: string;
+                                ext?: string;
+                                title?: string;
+                                type?: string;
+                                /** Format: style */
+                                createdAt?: string;
+                                uploadedAt?: string;
+                                /** Format: style */
+                                fileCreatedAt?: string;
+                                width?: number;
+                                height?: number;
+                                size?: number;
+                                tags?: {
+                                    id?: string;
+                                    label?: string;
+                                }[];
+                                urls?: {
+                                    /** Format: uri */
+                                    thumbnail?: string;
+                                    /** Format: uri */
+                                    preview?: string;
+                                };
+                            };
+                        }[];
+                        pagination?: {
+                            hasMore?: boolean;
+                            cursor?: unknown;
+                        };
+                        total?: number;
+                    };
+                };
+            };
+        };
+    };
+    /** @description Get an asset */
+    getAsset: {
+        parameters: {
+            path: {
+                assetId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        customFields?: {
+                            id?: string;
+                            name?: string;
+                            type?: string;
+                            values?: {
+                                id?: string;
+                                name?: string;
+                            }[];
+                        }[];
+                        coverVersion?: {
+                            id?: string;
+                            fileName?: string;
+                            description?: string;
+                            ext?: string;
+                            title?: string;
+                            type?: string;
+                            /** Format: style */
+                            createdAt?: string;
+                            uploadedAt?: string;
+                            /** Format: style */
+                            fileCreatedAt?: string;
+                            width?: number;
+                            height?: number;
+                            size?: number;
+                            tags?: {
+                                id?: string;
+                                label?: string;
+                            }[];
+                            urls?: {
+                                /** Format: uri */
+                                thumbnail?: string;
+                                /** Format: uri */
+                                preview?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    /** @description Delete an asset */
+    deleteAsset: {
+        parameters: {
+            path: {
+                assetId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: never;
+            };
+        };
+    };
+    /**
+     * @description Set custom field value(s) on an asset
+     *
+     * Body:
+     * - values - an array of objects containing the id of the custom field value to set (used for single-select and multi-select)
+     * - value - a string containing the value to set (used for plain-text and date)
+     *
+     * To unset a custom field on an asset, set the relevant property above to null
+     */
+    setAssetCustomField: {
+        parameters: {
+            path: {
+                /** @description the id of the asset */
+                assetId: string;
+                /** @description the id of the custom field */
+                customFieldId: string;
+            };
+        };
+        responses: {
+            /** @description single-select */
+            200: {
+                headers: {};
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /** @description Get a list of asset versions associated with an asset. */
+    listAssetVersions: {
+        parameters: {
+            path: {
+                /** @description The id of the asset */
+                assetId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            fileName?: string;
+                            description?: string;
+                            ext?: string;
+                            title?: string;
+                            type?: string;
+                            /** Format: style */
+                            createdAt?: string;
+                            uploadedAt?: string;
+                            width?: number;
+                            height?: number;
+                            size?: number;
+                            urls?: {
+                                /** Format: uri */
+                                thumbnail?: string;
+                                /** Format: uri */
+                                preview?: string;
+                            };
+                        }[];
+                        total?: number;
+                    };
+                };
+            };
+        };
+    };
     /** @description Get an asset version associated with an asset, including metadata fields like `IPTC` and `EXIF`. */
     getAssetVersion: {
         parameters: {
@@ -1487,6 +809,1039 @@ export interface operations {
                 headers: {};
                 content: {
                     "application/json": components["schemas"]["GetAssetVersionResponse"];
+                };
+            };
+        };
+    };
+    /**
+     * @description Update an asset version
+     *
+     * Body:
+     * - title - the title of the version
+     * - description - the description of the version
+     */
+    updateAssetVersion: {
+        parameters: {
+            path: {
+                /** @description the id of the asset */
+                assetId: string;
+                /** @description the id of the version */
+                versionId: string;
+            };
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    title?: string;
+                    description?: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /** @description Get the download URL of an asset version */
+    getAssetVersionDownloadUrl: {
+        parameters: {
+            path: {
+                /** @description the id of the asset */
+                assetId: string;
+                /** @description the id of the version */
+                versionId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        /** Format: uri */
+                        url?: string;
+                        /** Format: date-time */
+                        expiresAt?: string;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Add one or more tags to an asset version
+     *
+     * Body:
+     * - id - the id of the tag to add to the version
+     */
+    addAssetVersionTag: {
+        parameters: {
+            path: {
+                /** @description the id of the asset */
+                assetId: string;
+                /** @description the id of the version */
+                versionId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: never;
+            };
+        };
+    };
+    /** @description Delete a tag from an asset version */
+    deleteAssetVersionTag: {
+        parameters: {
+            path: {
+                /** @description the id of the asset */
+                assetId: string;
+                /** @description the id of the version */
+                versionId: string;
+                /** @description the id of the tag */
+                tagId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: never;
+            };
+        };
+    };
+    /** @description Get the list of parent boards of an asset */
+    listAssetBoards: {
+        parameters: {
+            query?: {
+                /** @description The max number of parent boards to return in the response */
+                limit?: string;
+                /** @description Cursor to the next page of parent boards */
+                cursor?: string;
+                /** @description A boolean flag to include custom fields with the results (default: `false`) */
+                includeCustomFields?: string;
+            };
+            path: {
+                /** @description the id of the asset */
+                assetId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            parentBoardId?: string;
+                            title?: string;
+                            description?: string;
+                            /** Format: style */
+                            createdAt?: string;
+                            updatedAt?: string;
+                        }[];
+                        pagination?: {
+                            hasMore?: boolean;
+                            cursor?: unknown;
+                        };
+                        total?: number;
+                    };
+                };
+            };
+        };
+    };
+    /** @description Get the list of boards defined in an Air workspace. */
+    listBoards: {
+        parameters: {
+            query?: {
+                /**
+                 * @description Free text board name search filter
+                 * @example :boardName
+                 */
+                name?: string;
+                /**
+                 * @description Limits the number of boards items to return in the response
+                 * @example :limit
+                 */
+                limit?: string;
+                /**
+                 * @description Cursor returned in the previous page of responses used to get the next page of results
+                 * @example :cursor
+                 */
+                cursor?: string;
+                /**
+                 * @description Used when navigating immediate child sub boards in a board hierarchy
+                 * @example :parentBoardId
+                 */
+                parentBoardId?: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            title?: string;
+                            description?: string;
+                            parentBoardId?: string;
+                            /** Format: style */
+                            createdAt?: string;
+                            updatedAt?: string;
+                            customFields?: {
+                                id?: string;
+                                name?: string;
+                                type?: string;
+                                values?: {
+                                    id?: string;
+                                    name?: string;
+                                }[];
+                            }[];
+                        }[];
+                        pagination?: {
+                            hasMore?: boolean;
+                            cursor?: unknown;
+                        };
+                        total?: number;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Create a board at the top-level of the workspace or as a child of another board
+     *
+     * Body:
+     * - title - the title of the board
+     * - description - the description of the board
+     * - parentBoardId (optional) - the id of the parent board that this board will be a child of
+     */
+    createBoard: {
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        title?: string;
+                        description?: string;
+                        parentBoardId?: string;
+                    };
+                };
+            };
+        };
+    };
+    /** @description Get a board */
+    getBoard: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        title?: string;
+                        description?: string;
+                        parentBoardId?: string;
+                        /** Format: style */
+                        createdAt?: string;
+                        updatedAt?: string;
+                        customFields?: {
+                            id?: string;
+                            name?: string;
+                            type?: string;
+                            values?: {
+                                id?: string;
+                                name?: string;
+                            }[];
+                        }[];
+                    };
+                };
+            };
+        };
+    };
+    /** @description Delete a board and any assets that are only contained in this board or its direct descendant boards. */
+    deleteBoard: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: never;
+            };
+        };
+    };
+    /**
+     * @description Update one or more properties on a board
+     *
+     * Body:
+     * - title - the title of the board
+     * - description - the description of the board
+     * - parentBoardId - the parent board this board is a child of. null will move the board to the root.
+     */
+    updateBoard: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: never;
+            };
+        };
+    };
+    /**
+     * @description Assign value(s) for a custom field on a board
+     *
+     * Body:
+     * - values - a list of objects with the id of the value to be set on the board for the custom field (used with single-select and multi-select custom fields)
+     * - value - the string value to be set for the custom field on the board (used with plain-text and date custom fields)
+     */
+    setBoardCustomField: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+                /** @description the id of the custom field */
+                customFieldId: string;
+            };
+        };
+        responses: {
+            /** @description single-select */
+            200: {
+                headers: {};
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /**
+     * @description Associates one or more assets to a board
+     *
+     * Body:
+     * - assetIds - an array of assetIds to associate with the board
+     */
+    addAssetsToBoard: {
+        parameters: {
+            path: {
+                boardId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /** @description Removes an asset from a board */
+    removeAssetFromBoard: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+                /** @description the id of the asset */
+                assetId: string;
+            };
+        };
+        requestBody?: {
+            content: {
+                "application/json": unknown;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    /** @description Get the list of guests of the board. */
+    listBoardGuests: {
+        parameters: {
+            query?: {
+                /** @description (optional) to filter with email */
+                email?: string;
+            };
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            /** Format: email */
+                            email?: string;
+                            roleId?: string;
+                            boardId?: string;
+                        }[];
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Add a guest to the board.
+     *
+     * Body:
+     * - email - email address of the user to be added as guest
+     * - roleId - id of the role to be associated with the guest
+     */
+    addBoardGuest: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        id?: string;
+                        /** Format: email */
+                        email?: string;
+                        roleId?: string;
+                        boardId?: string;
+                    };
+                };
+            };
+        };
+    };
+    /** @description Remove a guest from the board. */
+    removeBoardGuest: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+                /** @description the id of the guest */
+                guestId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /**
+     * @description Change the role of a guest.
+     *
+     * Body:
+     * - roleId - id of the role to be associated with the guest
+     */
+    updateBoardGuest: {
+        parameters: {
+            path: {
+                /** @description the id of the board */
+                boardId: string;
+                /** @description the id of the guest */
+                guestId: string;
+            };
+        };
+        requestBody?: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /** @description List custom fields */
+    listCustomFields: {
+        parameters: {
+            query?: {
+                /**
+                 * @description Free text search for custom field names matching criteria
+                 * @example :customFieldName
+                 */
+                name?: string;
+                /**
+                 * @description The number of records returned
+                 * @example :limit
+                 */
+                limit?: string;
+                /**
+                 * @description The cursor returned to from previous page of results
+                 * @example :cursor
+                 */
+                cursor?: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            name?: string;
+                            description?: string;
+                            /** Format: style */
+                            createdAt?: string;
+                            updatedAt?: string;
+                            type?: string;
+                        }[];
+                        pagination?: {
+                            hasMore?: boolean;
+                            cursor?: unknown;
+                        };
+                        total?: number;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Create a custom field (maximum total allowed per workspace: 100)
+     *
+     * Body:
+     * - name - the name of the custom field
+     * - description - the description of the custom field
+     * - type - the type of the custom field
+     * - values - the values of a single-select or multi-select custom field
+     */
+    createCustomField: {
+        responses: {
+            /** @description multi-select */
+            200: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        name?: string;
+                        description?: string;
+                        type?: string;
+                        values?: {
+                            id?: string;
+                            name?: string;
+                        }[];
+                    };
+                };
+            };
+            /** @description single-select */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        name?: string;
+                        description?: string;
+                        type?: string;
+                        values?: {
+                            id?: string;
+                            name?: string;
+                        }[];
+                    };
+                };
+            };
+        };
+    };
+    /** @description Get a custom field */
+    getCustomField: {
+        parameters: {
+            path: {
+                /** @description The id of the custom field to update */
+                customFieldId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        name?: string;
+                        description?: string;
+                        /** Format: style */
+                        createdAt?: string;
+                        updatedAt?: string;
+                        type?: string;
+                        values?: {
+                            id?: string;
+                            name?: string;
+                        }[];
+                    };
+                };
+            };
+        };
+    };
+    /** @description Delete a custom field */
+    deleteCustomField: {
+        parameters: {
+            path: {
+                /** @description The id of the custom field to update */
+                customFieldId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: never;
+            };
+        };
+    };
+    /**
+     * @description Update one or more properties on a custom field
+     *
+     * Body:
+     * - name - the name of the custom field
+     * - description - the description of the custom field
+     *
+     * *type is immutable due to workflows being built on top of custom fields
+     */
+    updateCustomField: {
+        parameters: {
+            path: {
+                /** @description The id of the custom field to update */
+                customFieldId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {};
+                content: never;
+            };
+        };
+    };
+    /**
+     * @description Add a new value to a single-select or multi-select custom field.
+     *
+     * Body:
+     * - name - the name of the custom field value
+     */
+    addCustomFieldValue: {
+        parameters: {
+            path: {
+                /** @description the id of the custom field */
+                customFieldId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        name?: string;
+                    };
+                };
+            };
+        };
+    };
+    /** @description Delete a value off of a custom field */
+    deleteCustomFieldValue: {
+        parameters: {
+            path: {
+                /** @description the id of the custom field */
+                customFieldId: string;
+                /** @description the id of the custom field value to delete */
+                valueId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /** @description Update one or more properties on a value */
+    updateCustomFieldValue: {
+        parameters: {
+            path: {
+                /** @description the id of the custom field */
+                customFieldId: string;
+                /** @description the id of the custom field value to delete */
+                valueId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        name?: string;
+                    };
+                };
+            };
+        };
+    };
+    /** @description List tags in the workspace */
+    listTags: {
+        parameters: {
+            query?: {
+                /**
+                 * @description Free text search for tag names matching criteria
+                 * @example :name
+                 */
+                name?: string;
+                /**
+                 * @description The number of records returned
+                 * @example :limit
+                 */
+                limit?: string;
+                /**
+                 * @description The cursor returned to from previous page of results
+                 * @example :cursor
+                 */
+                cursor?: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            name?: string;
+                        }[];
+                        pagination?: {
+                            hasMore?: boolean;
+                            cursor?: unknown;
+                        };
+                        total?: number;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Create a new tag
+     *
+     * Body:
+     * - name - the name of the tag
+     */
+    createTag: {
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        name?: string;
+                    };
+                };
+            };
+        };
+    };
+    /** @description Delete a tag */
+    deleteTag: {
+        parameters: {
+            path: {
+                /** @description the id of the tag */
+                tagId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            204: {
+                headers: {};
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /** @description Update one or more properties on a tag */
+    updateTag: {
+        parameters: {
+            path: {
+                /** @description the id of the tag */
+                tagId: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            default: {
+                headers: {};
+                content: {
+                    "application/json": {
+                        id?: string;
+                        name?: string;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Upload an asset to a workspace
+     *
+     * Body:
+     * - fileName - the name of the file
+     * - ext - the extension of the file
+     * - size - the size of the file
+     * - mime - the mime of the file
+     * - recordedAt - when the file was created
+     * - parentBoardId (optional) - the parent board to create the asset under
+     * - assetId (optional) - the parent asset to create a new version for this file under
+     * - customFields (optional) - the list of custom fields and values to assign to the asset
+     * - tags (optional) - the list of tags to assign to the asset version
+     */
+    createUpload: {
+        responses: {
+            /** @description Small File (<5G) */
+            201: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        assetId?: string;
+                        versionId?: string;
+                        /** Format: uri */
+                        uploadUrl?: string;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Create a part upload url
+     *
+     * Body:
+     * - multiPartUploadId - upload id returned from POST /uploads
+     * - key - key returned from POST /uploads
+     * - partNumber - the number associated with the chunk being uploaded
+     */
+    createUploadPart: {
+        responses: {
+            /** @description Default */
+            201: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        /** Format: uri */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Complete a large file upload
+     *
+     * Body:
+     * - multiPartUploadId - the upload id returned from POST /uploads
+     * - key - the key returned from POST /uploads
+     * - parts - an array of objects containing the etag (returned from file upload) and partNumber for each chunk
+     */
+    completeMultipartUpload: {
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    /**
+     * @description Create an import of an asset or asset version from a public URL.
+     *
+     * Request Body:
+     * - sourceUrl - the URL to get the file content. The URL needs to be publicly accessible.
+     * - fileName (optional) - the name of the file. If not provided then it will be determined from the URL.
+     * - ext (optional) - the extension of the file. If not provided then the ext will be pulled from the URL or defaulted to .file
+     * - recordedAt (optional) - when the file was created. If not provided the servers current time will be used.
+     * - assetId (optional) - the parent asset to create a new version for this file under.
+     * - parentBoardId (optional) - the parent board to create the asset under.
+     * - customFields (optional) - the list of custom fields and values to assign to the asset.
+     * - tags (optional) - the list of tags to assign to the asset version.
+     * - title (optional) - the title to assign to the asset version.
+     * - description (optional) - the description to assign to the asset version.
+     */
+    createImport: {
+        parameters: {
+            header?: {
+                /** @example {{workspaceId}} */
+                "x-air-workspace-id"?: string;
+            };
+        };
+        requestBody?: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Without metadata */
+            default: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        id?: string;
+                        assetId?: string;
+                        versionId?: string;
+                    };
+                };
+            };
+        };
+    };
+    /**
+     * @description Retrieve the status of a specific import by providing the import ID in the URL.
+     *
+     * Response:
+     * The body of the response will contain a JSON object with "status" and also "error" if the import is failed.
+     * - status:
+     *   - pending - the import is waiting to be scheduled.
+     *   - inProgress - the import is in progress.
+     *   - failed - the import has failed.
+     *   - succeeded - the import completed.
+     * - error: An object containing the error type and message if the import failed.
+     *   - SOURCE_FILE_NOT_FOUND - the file is not found from source Url when executing task.
+     *   - SOURCE_URL_BLOCKED - the source URL is to be blocked by the block rules.
+     *   - SOURCE_URL_INVALID - the file URL returns 4xx, 5xx errors.
+     *   - PROCESS_TIMED_OUT - exceeded the maximum amount of time allowed
+     */
+    getImportStatus: {
+        parameters: {
+            header?: {
+                /** @example {{workspaceId}} */
+                "x-air-workspace-id"?: string;
+            };
+            path: {
+                /** @example {{import-id}} */
+                importId: string;
+            };
+        };
+        responses: {
+            /** @description succeeded */
+            default: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        status?: string;
+                    };
+                };
+            };
+        };
+    };
+    /** @description Get the list of guest roles available in a workspace. */
+    listRoles: {
+        parameters: {
+            query?: {
+                /**
+                 * @description (required) to filter the roles by type
+                 * @example guest
+                 */
+                type?: string;
+            };
+        };
+        responses: {
+            /** @description Default */
+            200: {
+                headers: {
+                    /** @example application/json */
+                    "Content-Type"?: string;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            id?: string;
+                            name?: string;
+                            description?: string;
+                            billable?: boolean;
+                            type?: string;
+                        }[];
+                    };
                 };
             };
         };
